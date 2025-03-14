@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./WeatherForecast.css";
 
 const WeatherForecast = () => {
@@ -118,65 +119,80 @@ const WeatherForecast = () => {
   };
 
   return (
-    <div className="weather-container">
-      <div className="navbar">
-        <div className="navbar-left">
-          <span className="navbar-title">AgriSeva</span>
+    <>
+      <nav className="navbar">
+        <div className="nav-brand">AgriSeva</div>
+        <div className="nav-links">
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/pest-detect" className="nav-link">Pest Detection</Link>
+          <Link to="/schemes" className="nav-link">Schemes</Link>
+          <Link to="/chatbot" className="nav-link">Chat Bot</Link>
         </div>
+      </nav>
+
+      <div className="container">
+        <div className="header">
+          <h1 className="title">हवामान अंदाज</h1>
+          <p>कृपया शहर आणि महिना निवडा</p>
+        </div>
+
+        <div className="search-filters">
+          <select
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="dropdown"
+          >
+            {Object.entries(cityFileMap).map(([cityName, fileName]) => (
+              <option key={fileName} value={cityName}>{cityName}</option>
+            ))}
+          </select>
+
+          <select
+            value={selectedMonth}
+            onChange={(e) => setSelectedMonth(e.target.value)}
+            className="dropdown"
+          >
+            <option value="2025-03">मार्च 2025</option>
+            <option value="2025-04">एप्रिल 2025</option>
+            <option value="2025-05">मे 2025</option>
+            <option value="2025-06">जून 2025</option>
+          </select>
+        </div>
+
+        {loading ? (
+          <div className="loading-container">
+            <div className="loading-spinner"></div>
+            <p>लोड करत आहे...</p>
+          </div>
+        ) : error ? (
+          <div className="error-card">
+            <p>त्रुटी: {error}</p>
+          </div>
+        ) : (
+          <div className="weather-grid">
+            <div className="weather-card">
+              {weatherData.length === 0 ? (
+                <p className="no-data">या महिन्यातील डेटा उपलब्ध नाही.</p>
+              ) : bestSowingDate ? (
+                <div className="result-content">
+                  <h3>पेरणीसाठी योग्य दिवस</h3>
+                  <p className="success-message">
+                    {formatDate(bestSowingDate)}
+                  </p>
+                </div>
+              ) : (
+                <div className="result-content">
+                  <h3>सावधान</h3>
+                  <p className="warning-message">
+                    या महिन्यात पेरणी सुरक्षित नाही
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
-      
-      <h2>हवामान अंदाज</h2>
-      <h3>कृपया शहर आणि महिना निवडा</h3>
-
-      <div className="selectors">
-        <select
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          className="dropdown"
-        >
-          {Object.entries(cityFileMap).map(([cityName, fileName]) => (
-            <option key={fileName} value={cityName}>{cityName}</option>
-          ))}
-        </select>
-
-        <select
-          value={selectedMonth}
-          onChange={(e) => setSelectedMonth(e.target.value)}
-          className="dropdown"
-        >
-          <option value="2025-03">मार्च 2025</option>
-          <option value="2025-04">एप्रिल 2025</option>
-          <option value="2025-05">मे 2025</option>
-          <option value="2025-06">जून 2025</option>
-        </select>
-      </div>
-
-      {loading ? (
-        <p className="loading-text">लोड करत आहे...</p>
-      ) : error ? (
-        <div className="error-message">
-          <p>त्रुटी: {error}</p>
-          <small>फाइल संरचना तपासा:</small>
-          <pre>
-            {"Data is not fetched"}
-          </pre>
-        </div>
-      ) : (
-        <div className="weather-card">
-          {weatherData.length === 0 ? (
-            <p>या महिन्यातील डेटा उपलब्ध नाही.</p>
-          ) : bestSowingDate ? (
-            <p className="success-message">
-              पेरणी सुरु करण्याचा उत्तम दिवस: {formatDate(bestSowingDate)}
-            </p>
-          ) : (
-            <p className="warning-message">
-              या महिन्यात सलग 5 दिवस 10 mm पेक्षा जास्त पाऊस नसल्यामुळे पेरणी सुरक्षित नाही.
-            </p>
-          )}
-        </div>
-      )}
-    </div>
+    </>
   );
 };
 
