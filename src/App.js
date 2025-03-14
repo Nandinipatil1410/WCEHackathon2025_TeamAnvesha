@@ -126,7 +126,7 @@ function App() {
         <Route path="/pestdetect" element={<PestDetect currentLang={currentLang} />} />
         <Route path="/weather" element={<WeatherForecast />} />
         
-<Route path="/crop-predict" element={<CropPredictor />} />
+<Route path="/crop-predict" element={<CropPredictor currentLang={currentLang}/>} />
       </Routes>
     </Router>
   );
