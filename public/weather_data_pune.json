@@ -1,0 +1,646 @@
+[
+    {
+        "time": "2025-03-14",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-15",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-16",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-17",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-18",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-19",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-20",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.3,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-21",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.1,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-22",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-23",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-24",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-25",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-26",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-27",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-28",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-29",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-30",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-03-31",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-01",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-02",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-03",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-04",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-05",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-06",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-07",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-08",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-09",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-10",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-11",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-12",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-13",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-14",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-15",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-16",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-17",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.3,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-18",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-19",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-20",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-21",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-22",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-23",
+        "precipitation_sum_member01 (mm)": 0.2,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-24",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.1
+    },
+    {
+        "time": "2025-04-25",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.1,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-26",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-27",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-28",
+        "precipitation_sum_member01 (mm)": 1.9,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.3,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-29",
+        "precipitation_sum_member01 (mm)": 0.1,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.1,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-04-30",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-01",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-02",
+        "precipitation_sum_member01 (mm)": 0.1,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-03",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.1,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-04",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.1,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-05",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-06",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-07",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-08",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-09",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-10",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-11",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-12",
+        "precipitation_sum_member01 (mm)": 0.2,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-13",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-14",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-15",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-16",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-17",
+        "precipitation_sum_member01 (mm)": 7.9,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-18",
+        "precipitation_sum_member01 (mm)": 16.8,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-19",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-20",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-21",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-22",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-23",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.3,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-24",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.1,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-25",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 2.1,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-26",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 3.9,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-27",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 4.7,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-28",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 27.1,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-29",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 17.2,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-05-30",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 33.7,
+        "precipitation_sum_member04 (mm)": 6.2
+    },
+    {
+        "time": "2025-05-31",
+        "precipitation_sum_member01 (mm)": 7.4,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 11.8,
+        "precipitation_sum_member04 (mm)": 0.0
+    },
+    {
+        "time": "2025-06-01",
+        "precipitation_sum_member01 (mm)": 1.2,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 1.9,
+        "precipitation_sum_member04 (mm)": 0.1
+    },
+    {
+        "time": "2025-06-02",
+        "precipitation_sum_member01 (mm)": 5.9,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 1.5,
+        "precipitation_sum_member04 (mm)": 0.5
+    },
+    {
+        "time": "2025-06-03",
+        "precipitation_sum_member01 (mm)": 11.2,
+        "precipitation_sum_member02 (mm)": 2.4,
+        "precipitation_sum_member03 (mm)": 0.0,
+        "precipitation_sum_member04 (mm)": 0.7
+    },
+    {
+        "time": "2025-06-04",
+        "precipitation_sum_member01 (mm)": 4.7,
+        "precipitation_sum_member02 (mm)": 15.8,
+        "precipitation_sum_member03 (mm)": 0.1,
+        "precipitation_sum_member04 (mm)": 10.0
+    },
+    {
+        "time": "2025-06-05",
+        "precipitation_sum_member01 (mm)": 6.6,
+        "precipitation_sum_member02 (mm)": 0.1,
+        "precipitation_sum_member03 (mm)": 0.1,
+        "precipitation_sum_member04 (mm)": 1.0
+    },
+    {
+        "time": "2025-06-06",
+        "precipitation_sum_member01 (mm)": 4.9,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 0.3,
+        "precipitation_sum_member04 (mm)": 0.8
+    },
+    {
+        "time": "2025-06-07",
+        "precipitation_sum_member01 (mm)": 2.2,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 2.7,
+        "precipitation_sum_member04 (mm)": 1.2
+    },
+    {
+        "time": "2025-06-08",
+        "precipitation_sum_member01 (mm)": 2.1,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 14.7,
+        "precipitation_sum_member04 (mm)": 3.8
+    },
+    {
+        "time": "2025-06-09",
+        "precipitation_sum_member01 (mm)": 15.9,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 57.7,
+        "precipitation_sum_member04 (mm)": 11.1
+    },
+    {
+        "time": "2025-06-10",
+        "precipitation_sum_member01 (mm)": 0.0,
+        "precipitation_sum_member02 (mm)": 0.3,
+        "precipitation_sum_member03 (mm)": 5.0,
+        "precipitation_sum_member04 (mm)": 3.4
+    },
+    {
+        "time": "2025-06-11",
+        "precipitation_sum_member01 (mm)": 70.6,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 1.1,
+        "precipitation_sum_member04 (mm)": 2.0
+    },
+    {
+        "time": "2025-06-12",
+        "precipitation_sum_member01 (mm)": 6.3,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 2.0,
+        "precipitation_sum_member04 (mm)": 0.8
+    },
+    {
+        "time": "2025-06-13",
+        "precipitation_sum_member01 (mm)": 12.4,
+        "precipitation_sum_member02 (mm)": 0.0,
+        "precipitation_sum_member03 (mm)": 9.0,
+        "precipitation_sum_member04 (mm)": 0.5
+    }
+  ]
