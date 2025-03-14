@@ -179,18 +179,21 @@ const PestDetection = ({ currentLang }) => {
     }
   };
   return (
-    <div className="container">
+    <div className="pest-container">
       <h2>{translations[selectedLanguage].title}</h2>
 
       {/* Custom File Upload UI */}
       <div className="upload-container ">
+
+        <div className="pest-navbar">
+          <h2>AgriSeva</h2>
+        </div>
         <input type="file" onChange={handleImageChange} accept="image/*" />
         <img
           src={image || newImage}
           alt="Upload"
           className="upload-image"
-        />
-        <div className=" overlay-text">📷</div>
+          />
       </div>
 
       {translatedResult && (
