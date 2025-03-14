@@ -120,7 +120,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage currentLang={currentLang} setCurrentLang={setCurrentLang} />} />
         <Route path="/chatbot" element={<ChatbotPage />} />
-        <Route path="/schemes" element={<GovtSchemes />} />
+        <Route path="/schemes" element={<GovtSchemes currentLang={currentLang}/> } />
         <Route path="/pestdetect" element={<PestDetect currentLang={currentLang} />} />
         <Route path="/weather" element={<WeatherForecast />} />
       </Routes>
