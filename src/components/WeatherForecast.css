@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4caf50; 
+    padding: 15px 30px;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .navbar-left .navbar-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar-right .language-dropdown {
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: white;
+    border: none;
+    color: #4caf50;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .language-dropdown:focus {
+    outline: none;
+  }
+  
+  .weather-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    margin-top: 80px;
+  }
+  
+  .dropdown {
+    padding: 10px;
+    font-size: 16px;
+    margin: 15px 0;
+    background-color: #e6f7e6;
+    border: 1px solid #ccc;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    width: max-content;
+  }
+  
+  .dropdown:focus {
+    outline: none;
+  }
+  
+  .weather-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 15px;
+    width: 350px; 
+    text-align: left;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .weather-card h3 {
+    color: #4caf50;
+    font-size: 22px;
+  }
+  
+  .weather-card p {
+    color: #333;
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 12px 20px;
+    }
+    
+    .navbar-title {
+      font-size: 20px;
+    }
+  
+    .navbar-right .language-dropdown {
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+  
+    .weather-container {
+      margin-top: 100px;
+    }
+  
+    .weather-card {
+      width: 90%; 
+      padding: 25px;
+    }
+  }
