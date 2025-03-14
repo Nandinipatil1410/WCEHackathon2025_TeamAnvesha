@@ -31,7 +31,7 @@ const PestDetect = ({ currentLang }) => {
     "Tomato Leaf Blight": "Use Copper or Mancozeb fungicides to control leaf blight.",
     "Tomato Leaf Curl": "Use insecticidal soap or neem oil to control insects.",
     "Tomato Septoria Leaf Spot": "Apply Copper fungicides to prevent the spread.",
-    "Tomato Verticillium Wilt": "Use resistant tomato varieties to prevent wilt.",
+    "Tomato Verticillium Wilt": "Use resistant tomato varieties to prevent wilt."
   };
 
   useEffect(() => {

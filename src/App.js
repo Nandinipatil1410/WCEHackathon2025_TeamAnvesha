@@ -100,7 +100,7 @@ function HomePage({ currentLang, setCurrentLang }) {
             </div>
             <span>{translations[currentLang]?.schemes || translations["en"].schemes}</span>
           </Link>
-          <Link to="/pest-detect" className="feature-card">
+          <Link to="/pestdetect" className="feature-card">
             <div className="feature-icon">
             <img src={pestImg} alt="Pest Detection" className="feature-image" />
             </div>

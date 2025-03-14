@@ -25,19 +25,22 @@ const encodedData = data.map(item => ({
     output: cropToNumber[item.Recommended_Crop]
 }));
 
+// Log the encodedData to verify the output values
+console.log(encodedData);
+
 // Prepare the data for training
 const xs = tf.tensor2d(encodedData.map(item => item.input)); // Input features
-const ys = tf.tensor1d(encodedData.map(item => item.output), 'int32').toFloat(); // Convert to float32
+const ys = tf.oneHot(tf.tensor1d(encodedData.map(item => item.output), 'int32'), Object.keys(cropToNumber).length); // One-hot encoded labels
 
 // Define the model
 const model = tf.sequential();
 model.add(tf.layers.dense({ units: 10, activation: 'relu', inputShape: [2] }));
-model.add(tf.layers.dense({ units: Object.keys(cropToNumber).length, activation: 'softmax' }));
+model.add(tf.layers.dense({ units: Object.keys(cropToNumber).length, activation: 'sigmoid' })); // Use sigmoid for multi-label classification
 
 // Compile the model
 model.compile({
     optimizer: tf.train.adam(),
-    loss: 'sparseCategoricalCrossentropy',
+    loss: 'binaryCrossentropy', // Use binary cross-entropy for multi-label classification
     metrics: ['accuracy']
 });
 
@@ -62,16 +65,24 @@ async function saveModel() {
 }
 
 // Make predictions
-function predictCrop(month, soilType) {
+async function predictCrops(month, soilType, topK = 3) {
     const input = tf.tensor2d([[monthToNumber[month], soilTypeToNumber[soilType]]]);
     const prediction = model.predict(input);
-    const predictedCropIndex = prediction.argMax(1).dataSync()[0];
-    const predictedCrop = Object.keys(cropToNumber).find(key => cropToNumber[key] === predictedCropIndex);
-    return predictedCrop;
+    const probabilities = prediction.dataSync(); // Get prediction probabilities
+
+    // Get the top K crops with the highest probabilities
+    const topCrops = Array.from(probabilities)
+        .map((prob, index) => ({ crop: Object.keys(cropToNumber)[index], prob }))
+        .sort((a, b) => b.prob - a.prob) // Sort by probability in descending order
+        .slice(0, topK) // Get the top K crops
+        .map(item => item.crop); // Extract crop names
+
+    return topCrops;
 }
 
 // Example usage
-trainModel().then(() => {
-    console.log(predictCrop('June', 'Neutral (Loamy)')); // Output: Rice
+trainModel().then(async () => {
+    const crops = await predictCrops('January', 'Neutral (Loamy)', 4); // Get top 4 crops
+    console.log('Recommended Crops:', crops); // Output: ['Rice', 'Maize', 'Pigeonpeas', 'Chickpea']
     saveModel(); // Save the model after training
 });
