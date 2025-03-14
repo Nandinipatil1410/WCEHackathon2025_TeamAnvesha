@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./GovtSchemes.css";
+
 
 const schemes = [
   {
@@ -116,12 +117,162 @@ const schemes = [
   }
 ];
 
-export default function GovtSchemes() {
+
+
+
+
+export default function GovtSchemes({ currentLang }) {
+  
   const [selectedScheme, setSelectedScheme] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedState, setSelectedState] = useState("");
+  
+  const [translatedSchemes, setTranslatedSchemes] = useState([]);
+  const [translatedStates, setTranslatedStates] = useState([]);
+  const [translatedUI, setTranslatedUI] = useState({
+    title: "Government Schemes",
+    description: "Find and apply for agricultural schemes.",
+    searchPlaceholder: "Search schemes...",
+    selectState: "Select State",
+    backButton: "Back",
+    eligibilityTitle: "Eligibility Criteria",
+    applyNow: "Apply Now",
+    viewDetails: "View Details"
+  });
 
-  const filteredSchemes = schemes.filter(
+  useEffect(() => {
+    const translateUI = async () => {
+      const uiKeys = {
+        title: "Government Schemes",
+        description: "Find and apply for agricultural schemes.",
+        searchPlaceholder: "Search schemes...",
+        selectState: "Select State",
+        backButton: "Back",
+        eligibilityTitle: "Eligibility Criteria",
+        applyNow: "Apply Now",
+        viewDetails: "View Details",
+      };
+  
+      const translations = await Promise.all(
+        Object.entries(uiKeys).map(async ([key, value]) => {
+          const translatedText = await translateText(value, currentLang);
+          return [key, translatedText];
+        })
+      );
+  
+      setTranslatedUI(Object.fromEntries(translations));
+    };
+  
+    translateUI();
+  }, [currentLang]);
+  
+
+  useEffect(() => {
+    const translateSchemes = async () => {
+      if (currentLang === "mr") {
+        setTranslatedSchemes(schemes);
+        return;
+      }
+  
+      if (!schemes.length) return; // Ensure schemes exist
+  
+      const translatedData = await Promise.all(
+        schemes.map(async (scheme) => {
+          const translatedTitle = await translateText(scheme.title, currentLang);
+          const translatedStatus = await translateText(scheme.status, currentLang);
+          const translatedDate = await translateText(scheme.date, currentLang);
+          const translatedDetails = await translateText(scheme.details, currentLang);
+          const translatedState = await translateText(scheme.state, currentLang);
+          return {
+            ...scheme,
+            title: translatedTitle,
+            status: translatedStatus,
+            date: translatedDate,
+            state: translatedState,
+            details: translatedDetails,
+          };
+        })
+      );
+      setTranslatedSchemes(translatedData);
+
+      // Extract and translate state names
+      const uniqueStates = [...new Set(schemes.map((s) => s.state))];
+      const translatedStatesList = await Promise.all(
+        uniqueStates.map((state) => translateText(state, currentLang))
+      );
+      setTranslatedStates(translatedStatesList);
+    };
+  
+    translateSchemes();
+  }, [currentLang]);
+
+
+  const audioRef = useRef(null); // Store the audio instance
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  
+  const speakText = async (text, lang) => {
+    try {
+      // Stop current speech if already playing
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current = null;
+        setIsSpeaking(false);
+        return;
+      }
+  
+      const voiceId = lang === "en" ? "arman" : "diya";
+      const response = await fetch("https://waves-api.smallest.ai/api/v1/lightning/get_speech", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2QxY2QxZDE5MTUxNTkzMzFlYzUyM2IiLCJpYXQiOjE3NDE4MDMzNjh9.TGDZPo6btvAk2Z1DaNIK0TKUJ5ZgqL5vFLp9zt2cygI",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ voice_id: voiceId, text, speed: 1, sample_rate: 24000, add_wav_header: true }),
+      });
+  
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      audio.play();
+      audioRef.current = audio; // Store the audio instance
+      setIsSpeaking(true);
+  
+      // When audio finishes, reset state
+      audio.addEventListener("ended", () => {
+        setIsSpeaking(false);
+        audioRef.current = null;
+      });
+    } catch (error) {
+      console.error("Speech error:", error);
+    }
+  };
+  // Stop speech when the component unmounts or route changes
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current = null;
+        setIsSpeaking(false);
+      }
+    };
+  }, []);
+
+  const translateText = async (text, targetLang) => {
+    try {
+      const response = await fetch(
+        `https://translate.googleapis.com/translate_a/single?client=gtx&sl=mr&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`
+      );
+      const data = await response.json();
+      return data[0].map((item) => item[0]).join("");
+    } catch (error) {
+      console.error("Translation error:", error);
+      return text;
+    }
+  };
+
+  const filteredSchemes = translatedSchemes.filter(
     (scheme) =>
       scheme.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (selectedState === "" || scheme.state === selectedState)
@@ -143,23 +294,23 @@ export default function GovtSchemes() {
         {!selectedScheme ? (
           <>
             <div className="header">
-              <h1 className="title">सरकारी कृषी योजना</h1>
-              <p>शेतकऱ्यांसाठी विविध सरकारी योजनांची माहिती</p>
+              <h1 className="title">{translatedUI.title}</h1>
+              <p>{translatedUI.description}</p>
             </div>
-            
+
             <div className="search-filters">
               <div className="search-container">
                 <input
                   type="text"
-                  placeholder="योजना शोधा"
+                  placeholder={translatedUI.searchPlaceholder}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <Search className="search-icon" />
               </div>
-              
+
               <select onChange={(e) => setSelectedState(e.target.value)}>
-                <option value="">राज्य निवडा</option>
+                <option value="">{translatedUI.selectState}</option>
                 {[...new Set(schemes.map((s) => s.state))].map((state) => (
                   <option key={state} value={state}>{state}</option>
                 ))}
@@ -176,39 +327,42 @@ export default function GovtSchemes() {
                   <p className="date">{scheme.date}</p>
                   <p className="state">{scheme.state}</p>
                   <p>{scheme.details}</p>
-                  <button 
-                    className="button primary-button"
-                    onClick={() => setSelectedScheme(scheme)}
-                  >
+
+                  <button className="button primary-button" onClick={() => setSelectedScheme(scheme)}>
                     तपशील पहा
                   </button>
+
+                  <button className="button speak-button" onClick={() => speakText(`${scheme.title}. ${scheme.details}`, currentLang)}>
+                    🔊 Listen
+                  </button>
                 </div>
+
               ))}
             </div>
           </>
         ) : (
           <div className="scheme-details">
-            <button 
-              onClick={() => setSelectedScheme(null)} 
+            <button
+              onClick={() => setSelectedScheme(null)}
               className="back-button"
             >
-              ← मागे जा
+              {translatedUI.backButton}
             </button>
             <h2 className="title">{selectedScheme.title}</h2>
             <p>{selectedScheme.details}</p>
-            <h3>पात्रता निकष</h3>
+            <h3>{translatedUI.eligibilityTitle}</h3>
             <ul className="eligibility-list">
               {selectedScheme.eligibility.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
-            <a 
-              href={selectedScheme.applicationLink} 
-              target="_blank" 
+            <a
+              href={selectedScheme.applicationLink}
+              target="_blank"
               rel="noopener noreferrer"
             >
               <button className="button primary-button">
-                आता अर्ज करा
+                {translatedUI.applyNow}
               </button>
             </a>
           </div>
