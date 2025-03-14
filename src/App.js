@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link ,Navigate} from 'react-rou
 import './App.css';
 import chatbotImg from "./assets/plant-logo.png";
 import weatherImg from "./assets/weather-logo.png";
-import cropsImg from "./assets/leaf-logo.jpg";
+import cropsImg from "./assets/crop.jpg";
 import schemesImg from "./assets/schemes.png";
 import pestImg from "./assets/detect.png";
 
