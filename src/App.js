@@ -1,32 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link ,Navigate} from 'react-router-dom';
 import './App.css';
+import chatbotImg from "./assets/plant-logo.png";
+import weatherImg from "./assets/weather-logo.png";
+import cropsImg from "./assets/leaf-logo.jpg";
+import schemesImg from "./assets/schemes.png";
+import pestImg from "./assets/detect.png";
 
-import axios from "axios";
 import ChatbotPage from './components/Chatbot';
 import GovtSchemes from './components/GovermentSchemes';
 import PestDetection from './components/PestDetect';
-
-import Weather from './components/WeatherForecast'
 import WeatherForecast from './components/WeatherForecast';
-// SVG Components
-const PlantLogo = () => (
-  <svg viewBox="0 0 24 24" width="100%" height="100%" fill="#2c5f2d">
-    <path d="M12,3C10.89,3 10,3.89 10,5V7H14V5C14,3.89 13.11,3 12,3Z" />
-  </svg>
-);
 
-const WeatherIcon = () => (
-  <svg viewBox="0 0 24 24" width="100%" height="100%" fill="#2c5f2d">
-    <path d="M6,19A5,5 0 0,1 1,14A5,5 0 0,1 6,9C7,6.65 9.3,5 12,5C15.43,5 18.24,7.66 18.5,11.03L19,11A4,4 0 0,1 23,15A4,4 0 0,1 19,19H6Z" />
-  </svg>
-);
-
-const CropIcon = () => (
-  <svg viewBox="0 0 24 24" width="100%" height="100%" fill="#2c5f2d">
-    <path d="M15,4V6H18V4H15M14,8V10H17V8H14M13,12V14H16V12H13M12,16V18H15V16H12Z" />
-  </svg>
-);
 
 const languages = [
   { code: 'en', name: 'English' },
@@ -37,6 +22,44 @@ const languages = [
 ];
 
 function HomePage({ currentLang, setCurrentLang }) {
+  const translations = {
+    en: {
+      greeting: "Hello! I am your Agriculture Assistant",
+      weather: "Weather Forecast",
+      crops: "Crop Recommendation",
+      schemes: "Government Schemes",
+      pestDetection: "Pest Detection",
+    },
+    hi: {
+      greeting: "नमस्ते! मैं आपका कृषि सहायक हूँ",
+      weather: "मौसम पूर्वानुमान",
+      crops: "फसल सिफारिश",
+      schemes: "सरकारी योजनाएँ",
+      pestDetection: "कीट पहचान",
+    },
+    mr: {
+      greeting: "नमस्कार! मी तुमचा कृषी सहाय्यक",
+      weather: "हवामान अंदाज",
+      crops: "पीक शिफारस",
+      schemes: "शासकिय योजना",
+      pestDetection: "कीड तपासा",
+    },
+    te: {
+      greeting: "హలో! నేను మీ వ్యవసాయ సహాయకుడు",
+      weather: "వాతావరణ సూచన",
+      crops: "పంట సిఫార్సు",
+      schemes: "ప్రభుత్వ పథకాలు",
+      pestDetection: "కీటకాల గుర్తింపు",
+    },
+    pa: {
+      greeting: "ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ ਤੁਹਾਡਾ ਖੇਤੀ ਮਦਦਗਾਰ ਹਾਂ",
+      weather: "ਮੌਸਮ ਦੀ ਪੇਸ਼ਗੋਈ",
+      crops: "ਫ਼ਸਲ ਦੀ ਸਿਫਾਰਸ਼",
+      schemes: "ਸਰਕਾਰੀ ਯੋਜਨਾਵਾਂ",
+      pestDetection: "ਕੀੜੇ ਦੀ ਪਛਾਣ",
+    },
+  };
+
   return (
     <div className="home-container">
       <nav className="nav-bar">
@@ -51,35 +74,35 @@ function HomePage({ currentLang, setCurrentLang }) {
         <div className="plant-avatar">
           <Link to="/chatbot">
             <div className="avatar-image">
-              <PlantLogo />
+            <img src={chatbotImg} alt="Chatbot" className="feature-image" />
             </div>
           </Link>
-          <p>नमस्कार! मी तुमचा कृषी सहाय्यक</p>
+          <p className="greeting-text">{translations[currentLang]?.greeting || translations["en"].greeting}</p>
         </div>
         <div className="features-grid">
           <Link to="/weather" className="feature-card">
             <div className="feature-icon">
-              <WeatherIcon />
+            <img src={weatherImg} alt="Weather" className="feature-image" />
             </div>
-            <span>हवामान अंदाज</span>
+            <span>{translations[currentLang]?.weather || translations["en"].weather}</span>
           </Link>
           <Link to="/crops" className="feature-card">
             <div className="feature-icon">
-              <CropIcon />
+            <img src={cropsImg} alt="Crops" className="feature-image" />
             </div>
-            <span>पीक शिफारस</span>
+            <span>{translations[currentLang]?.crops || translations["en"].crops}</span>
           </Link>
           <Link to="/schemes" className="feature-card">
             <div className="feature-icon">
-              <PlantLogo />
+            <img src={schemesImg} alt="Schemes" className="feature-image" />
             </div>
-            <span>शासकिय योजना </span>
+            <span>{translations[currentLang]?.schemes || translations["en"].schemes}</span>
           </Link>
           <Link to="/pestdetect" className="feature-card">
             <div className="feature-icon">
-              <PlantLogo />
+            <img src={pestImg} alt="Pest Detection" className="feature-image" />
             </div>
-            <span>कीड तपासा  </span>
+            <span>{translations[currentLang]?.pestDetection || translations["en"].pestDetection}</span>
           </Link>
         </div>
       </div>
@@ -88,22 +111,18 @@ function HomePage({ currentLang, setCurrentLang }) {
 }
 
 
+
 function App() {
   const [currentLang, setCurrentLang] = useState('mr');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <Router>
       <Routes>
-        {/* If user is logged in, redirect them to the home page */}
-        
-        {/* Login route */}
-        {/* <Route path="/login" element={<LoginPage IsLoggedIn={setIsLoggedIn}  />} />
-        <Route path="/" element={isLoggedIn ? <HomePage currentLang={currentLang} setCurrentLang={setCurrentLang} /> : <Navigate to="/login" />} /> */}
 
         <Route path="/" element={<HomePage currentLang={currentLang} setCurrentLang={setCurrentLang} />} />
-        <Route path="/chatbot" element={<ChatbotPage />} />
+        <Route path="/chatbot" element={<ChatbotPage /> } currentLang={currentLang} />
         <Route path="/schemes" element={<GovtSchemes />} />
-        <Route path="/pestdetect" element={<PestDetection />} />
+        <Route path="/pestdetect" element={<PestDetection currentLang={currentLang} />} />
         <Route path="/weather" element={<WeatherForecast />} />
       </Routes>
     </Router>
