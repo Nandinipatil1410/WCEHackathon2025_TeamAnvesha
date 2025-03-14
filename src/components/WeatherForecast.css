@@ -1,14 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Arial, sans-serif;
-}
 
-body {
-  overflow: hidden;
-  background-color: #e0f7fa; /* Solid background color */
-}
 
 .navbar {
   background: #2e7d32;
@@ -59,7 +49,7 @@ body {
   background-image: linear-gradient(120deg, #e8f5e8 0%, #f0f7f0 100%);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .header {
@@ -368,4 +358,4 @@ body {
 
 .weather-card {
   animation: gentleFloat 4s ease-in-out infinite;
-}
+} 
