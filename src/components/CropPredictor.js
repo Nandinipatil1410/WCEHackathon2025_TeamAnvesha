@@ -5,11 +5,14 @@ import './CropPredictor.css';
 
 const translateText = async (text, targetLang) => {
   try {
+    console.log(`Translating text: "${text}" to language: ${targetLang}`);
     const response = await fetch(
       `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`
     );
     const data = await response.json();
-    return data[0].map((item) => item[0]).join("");
+    const translated = data[0].map((item) => item[0]).join("");
+    console.log(`Translated text: "${translated}"`);
+    return translated;
   } catch (error) {
     console.error("Translation error:", error);
     return text;
@@ -47,7 +50,6 @@ const numberToCrop = [
   'Apple', 'Orange', 'Papaya', 'Coconut', 'Cotton', 'Jute', 'Coffee'
 ];
 
-
 const CropPredictor = ({ currentLang }) => {
   const [selectedMonth, setSelectedMonth] = useState('');
   const [selectedSoil, setSelectedSoil] = useState('');
@@ -69,15 +71,17 @@ const CropPredictor = ({ currentLang }) => {
     recommendedCrop: "Recommended Crop"
   };
 
-
   useEffect(() => {
+    console.log("Loading model...");
     loadModel();
     translateAllText();
   }, [currentLang]);
 
   const loadModel = async () => {
     try {
+      console.log('Attempting to load model...');
       const loadedModel = await tf.loadLayersModel('/model/model.json');
+      console.log('Model loaded successfully');
       setModel(loadedModel);
     } catch (error) {
       console.error('Error loading model:', error);
@@ -85,13 +89,17 @@ const CropPredictor = ({ currentLang }) => {
   };
 
   const translateAllText = async () => {
+    console.log("Translating all texts...");
     const newTranslations = {};
 
     for (const key in texts) {
+      console.log(`Translating text for ${key}`);
       newTranslations[key] = await translateText(texts[key], currentLang);
     }
 
+    console.log("Translating months...");
     const translatedMonths = await Promise.all(months.map(month => translateText(month, currentLang)));
+    console.log("Translating soil types...");
     const translatedSoilTypes = await Promise.all(soilTypes.map(soil => translateText(soil, currentLang)));
 
     setTranslatedText(newTranslations);
@@ -99,20 +107,25 @@ const CropPredictor = ({ currentLang }) => {
     setTranslatedSoilTypes(translatedSoilTypes);
   };
 
-
   const handlePredict = async () => {
-    if (!model || !selectedMonth || !selectedSoil) return;
+    if (!model || !selectedMonth || !selectedSoil) {
+      console.log("Model or input data is missing.");
+      return;
+    }
 
+    console.log("Making prediction...");
     setLoading(true);
     try {
       const input = tf.tensor2d([[monthToNumber[selectedMonth], soilTypeToNumber[selectedSoil]]]);
+      console.log(`Input data: [${monthToNumber[selectedMonth]}, ${soilTypeToNumber[selectedSoil]}]`);
       const prediction = model.predict(input);
       const predictedCropIndex = prediction.argMax(1).dataSync()[0];
+      console.log(`Predicted crop index: ${predictedCropIndex}`);
       const predictedCrop = numberToCrop[predictedCropIndex];
 
-      // Translate the predicted crop name before displaying it
       const translatedCrop = await translateText(predictedCrop, currentLang);
       setPrediction(translatedCrop);
+      console.log(`Predicted crop: ${translatedCrop}`);
     } catch (error) {
       console.error('Prediction error:', error);
     }
@@ -121,7 +134,7 @@ const CropPredictor = ({ currentLang }) => {
 
   const speakText = async (text, lang) => {
     try {
-      // Stop current speech if already playing
+      console.log(`Speaking text: "${text}" in language: ${lang}`);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
@@ -220,6 +233,5 @@ const CropPredictor = ({ currentLang }) => {
     </>
   );
 };
-
 
 export default CropPredictor;

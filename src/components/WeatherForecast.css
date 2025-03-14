@@ -1,4 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
 
+body {
+  overflow: hidden;
+  background-color: #e0f7fa; /* Solid background color */
+}
 
 .navbar {
   background: #2e7d32;
@@ -49,7 +59,7 @@
   background-image: linear-gradient(120deg, #e8f5e8 0%, #f0f7f0 100%);
   display: flex;
   flex-direction: column;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .header {
@@ -58,8 +68,7 @@
   background: white;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  margin: 1rem;
-  margin-top: 1.5rem; /* Increased top margin */
+  margin: 0.8rem;
 }
 
 .header h1 {
@@ -78,8 +87,7 @@
   justify-content: center;
   gap: 1rem;
   padding: 0.5rem;
-  margin: 1rem;
-  margin-top: 1.5rem; /* Added top margin */
+  margin: 0.5rem;
 }
 
 .dropdown {
@@ -106,7 +114,7 @@
   justify-content: center;
   align-items: flex-start;
   padding: 1rem;
-  margin-top: 1.5rem; /* Added top margin */
+  padding-top: 0.5rem;
   min-height: 0;
 }
 
@@ -217,7 +225,6 @@
   .header {
     padding: 0.8rem;
     margin: 0.5rem;
-    margin-top: 1.2rem; /* Adjusted for smaller screens */
   }
 
   .header h1 {
@@ -232,8 +239,8 @@
   .search-filters {
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
-    margin-top: 1.2rem;
+    gap: 0.5rem;
+    margin: 0.3rem;
   }
 
   .dropdown {
@@ -243,7 +250,7 @@
 
   .weather-grid {
     padding: 0.5rem;
-    margin-top: 1.2rem;
+    margin-top: -1rem;
   }
 
   .weather-card {
@@ -269,16 +276,14 @@
 @media screen and (max-height: 667px) {
   .header {
     padding: 0.6rem;
-    margin-top: 1rem;
   }
 
   .search-filters {
     gap: 0.4rem;
-    margin-top: 1rem;
   }
 
   .weather-grid {
-    margin-top: 1rem;
+    margin-top: -1.5rem;
   }
 
   .weather-card {
@@ -292,15 +297,11 @@
   }
 
   .header {
-    margin-top: 0.8rem;
-  }
-
-  .search-filters {
-    margin-top: 0.8rem;
+    margin: 0.4rem;
   }
 
   .weather-grid {
-    margin-top: 0.8rem;
+    margin-top: -0.5rem;
   }
 }
 
@@ -358,4 +359,4 @@
 
 .weather-card {
   animation: gentleFloat 4s ease-in-out infinite;
-} 
+}

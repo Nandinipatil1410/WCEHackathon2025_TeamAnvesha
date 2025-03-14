@@ -205,7 +205,7 @@ const ChatbotPage = ({ currentLang }) => {
         .replace(/#{1,6}\s*(.*?)\n?/g, "$1")
         .replace(/\n+/g, " ");
 
-      const voiceId = selectedLanguage === "en" ? "arman" : "diya";
+      const voiceId = selectedLanguage === "en" ? "arman" : "nikita";
       const maxTextLength = 200;
       const textChunks = cleanedText.match(new RegExp(`.{1,${maxTextLength}}(\\s|$)`, "g")) || [];
 
