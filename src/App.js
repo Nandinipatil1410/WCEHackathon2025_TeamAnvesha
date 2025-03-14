@@ -9,7 +9,7 @@ import pestImg from "./assets/detect.png";
 
 import ChatbotPage from './components/Chatbot';
 import GovtSchemes from './components/GovermentSchemes';
-import PestDetection from './components/PestDetect';
+import PestDetect from './components/PestDetect';
 import WeatherForecast from './components/WeatherForecast';
 
 
@@ -98,7 +98,7 @@ function HomePage({ currentLang, setCurrentLang }) {
             </div>
             <span>{translations[currentLang]?.schemes || translations["en"].schemes}</span>
           </Link>
-          <Link to="/pestdetect" className="feature-card">
+          <Link to="/pest-detect" className="feature-card">
             <div className="feature-icon">
             <img src={pestImg} alt="Pest Detection" className="feature-image" />
             </div>
@@ -118,11 +118,10 @@ function App() {
   return (
     <Router>
       <Routes>
-     
         <Route path="/" element={<HomePage currentLang={currentLang} setCurrentLang={setCurrentLang} />} />
-        <Route path="/chatbot" element={<ChatbotPage /> } currentLang={currentLang} />
+        <Route path="/chatbot" element={<ChatbotPage />} />
         <Route path="/schemes" element={<GovtSchemes />} />
-        <Route path="/pestdetect" element={<PestDetection currentLang={currentLang} />} />
+        <Route path="/pestdetect" element={<PestDetect currentLang={currentLang} />} />
         <Route path="/weather" element={<WeatherForecast />} />
       </Routes>
     </Router>

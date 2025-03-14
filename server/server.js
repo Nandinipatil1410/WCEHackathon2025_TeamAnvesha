@@ -75,6 +75,15 @@ app.post('/api/nvidia', async (req, res) => {
     });
   }
 });
+app.get('/api/weather/:city', (req, res) => {
+  const city = req.params.city.toLowerCase();
+  try {
+      const data = fs.readFileSync(path.join(__dirname, 'data', `${city}.json`));
+      res.json(JSON.parse(data));
+  } catch (error) {
+      res.status(404).json({ error: 'City data not found' });
+  }
+});
 
 // // Multer setup for file uploads for ML mode
 // const upload = multer({ dest: 'uploads/' });

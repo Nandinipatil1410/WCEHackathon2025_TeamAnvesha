@@ -4,7 +4,7 @@ import "./PestDetect.css";
 import newImage from './new.png'
 const URL = "/my_model/";
 
-const PestDetection = ({ currentLang }) => {
+const PestDetect = ({ currentLang }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(currentLang || "mr");
   const [image, setImage] = useState(null);
   const [result, setResult] = useState("");
@@ -216,4 +216,4 @@ const PestDetection = ({ currentLang }) => {
   );
 };
 
-export default PestDetection;
+export default PestDetect;

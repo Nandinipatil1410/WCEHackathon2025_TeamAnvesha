@@ -1,78 +1,320 @@
+.navbar {
+  background: #2e7d32;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.nav-brand {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 .container {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f0fff0;
+  max-width: 1200px;
+  margin: 80px auto 0;
+  padding: 2rem;
+  background-color: #f0fff0;
+  min-height: calc(100vh - 80px);
+}
+
+.header {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.search-filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-container {
+  position: relative;
+  flex: 1;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 2px solid #2e7d32;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2e7d32;
+}
+
+select {
+  padding: 12px;
+  border: 2px solid #2e7d32;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+select:hover {
+  background-color: #f5f5f5;
+}
+
+.schemes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  color: #2e7d32;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.status-active {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-expiring {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.scheme-details {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.eligibility-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.eligibility-list li {
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eligibility-list li::before {
+  content: "•";
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-button {
+  background: #2e7d32;
+  color: white;
+}
+
+.primary-button:hover {
+  background: #1b5e20;
+}
+
+.secondary-button {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.secondary-button:hover {
+  background: #c8e6c9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .schemes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .header {
+    padding: 1.5rem;
+  }
+
+  .navbar {
+    padding: 1rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .back-nav-button {
+    padding: 0.4rem;
   }
   
-  .title {
-    color: #2e7d32;
-    text-align: center;
+  .nav-left {
+    gap: 0.5rem;
   }
-  
-  .search-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+}
+
+@media (max-width: 480px) {
+  .nav-brand {
+    font-size: 1.2rem;
   }
-  
-  .search-container input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+  .nav-links {
+    gap: 0.5rem;
   }
-  
-  .search-icon {
-    color: #2e7d32;
+
+  .nav-link {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
   }
-  
-  select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .card {
-    background: white;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-  }
-  
-  .card:hover {
-    background: #e8f5e9;
-  }
-  
-  .status {
-    font-weight: bold;
-    color: #d32f2f;
-  }
-  
-  .date {
-    color: #757575;
-  }
-  
-  .state {
-    color: #0288d1;
-  }
-  
-  .back-button, .apply-button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background: #2e7d32;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .back-button:hover, .apply-button:hover {
-    background: #1b5e20;
-  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Add these new styles and modify existing navbar styles */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-nav-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.back-nav-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.back-nav-button:active {
+  transform: scale(0.95);
+}
+
+/* Style for the back button within scheme details */
+.back-button {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: #c8e6c9;
+}
   
