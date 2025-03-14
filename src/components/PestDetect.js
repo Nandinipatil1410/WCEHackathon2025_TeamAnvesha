@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import * as tmImage from "@teachablemachine/image";
 import "./PestDetect.css";
 import newImage from './new.png'
+import { Link } from "react-router-dom";
+
 const URL = "/my_model/";
 
 const PestDetect = ({ currentLang }) => {
@@ -179,40 +181,60 @@ const PestDetect = ({ currentLang }) => {
     }
   };
   return (
-    <div className="pest-container">
-      <h2>{translations[selectedLanguage].title}</h2>
-
-      {/* Custom File Upload UI */}
-      <div className="upload-container ">
-
-        <div className="pest-navbar">
-          <h2>AgriSeva</h2>
+    <>
+      <nav className="navbar">
+        <Link to="/" className="nav-brand">AgriSeva</Link>
+        <div className="nav-links">
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/pest-detect" className="nav-link active">Pest Detection</Link>
+          <Link to="/schemes" className="nav-link">Schemes</Link>
+          <Link to="/chatbot" className="nav-link">Chat Bot</Link>
         </div>
-        <input type="file" onChange={handleImageChange} accept="image/*" />
-        <img
-          src={image || newImage}
-          alt="Upload"
-          className="upload-image"
-          />
-      </div>
+      </nav>
 
-      {translatedResult && (
-        <p className="result">
-          {translations[selectedLanguage].resultLabel}: {translatedResult}
-        </p>
-      )}
-      {translatedRecommendation && (
-        <p className="recommendation">
-          {translations[selectedLanguage].recommendationLabel}: {translatedRecommendation}
-        </p>
-      )}
-       <button onClick={() => speakText(translatedResult, selectedLanguage)}>
-        {translations[selectedLanguage].readResult}
-      </button>
-      <button onClick={() => speakText(translatedRecommendation, selectedLanguage)}>
-        {translations[selectedLanguage].readRecommendation}
-      </button>
-    </div>
+      <div className="pest-container">
+        <div className="pest-header">
+          <h2>कीटक ओळख प्रणाली</h2>
+          <p>पीक रोग ओळखण्यासाठी फोटो अपलोड करा</p>
+        </div>
+
+        <div className="upload-container">
+          <div className="upload-area">
+            <input 
+              type="file" 
+              onChange={handleImageChange} 
+              accept="image/*" 
+            />
+            <img
+              src={image || newImage}
+              alt="Upload"
+              className="upload-image"
+            />
+          </div>
+        </div>
+
+        {translatedResult && (
+          <div className="pest-result">
+            <strong>{translations[selectedLanguage].resultLabel}:</strong> {translatedResult}
+          </div>
+        )}
+
+        {translatedRecommendation && (
+          <div className="pest-recommendation">
+            <strong>{translations[selectedLanguage].recommendationLabel}:</strong> {translatedRecommendation}
+          </div>
+        )}
+
+        <div className="action-buttons">
+          <button onClick={() => speakText(translatedResult, selectedLanguage)}>
+            {translations[selectedLanguage].readResult}
+          </button>
+          <button onClick={() => speakText(translatedRecommendation, selectedLanguage)}>
+            {translations[selectedLanguage].readRecommendation}
+          </button>
+        </div>
+      </div>
+    </>
   );
 };
 
