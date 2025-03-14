@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { IconButton, Button, TextField, Select, MenuItem } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { Menu as MenuIcon, Edit as EditIcon, Delete as DeleteIcon, Mic as MicIcon, Send as SendIcon, LightMode as LightModeIcon, DarkMode as DarkModeIcon, VolumeUp as VolumeUpIcon } from '@mui/icons-material';
 import './Chatbot.css'
 import { Check as CheckIcon } from '@mui/icons-material';
+import CloseIcon from "@mui/icons-material/Close";
+
 
 
 const translations = {
@@ -32,14 +34,11 @@ const translations = {
 };
 
 
-
-
 const ChatbotPage = ({ currentLang }) => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(currentLang || "mr");  // Use prop as initial state
   const [chatHistory, setChatHistory] = useState(() => JSON.parse(localStorage.getItem("agriChatHistory")) || {});
   const [chatNames, setChatNames] = useState(() => JSON.parse(localStorage.getItem("agriChatNames")) || {});
@@ -52,13 +51,13 @@ const ChatbotPage = ({ currentLang }) => {
   recognition.lang = currentLang === "mr" ? "mr-IN" : currentLang === "hi" ? "hi-IN" : "en-US";
   recognition.continuous = false;
   recognition.interimResults = false;
-  
+
   const checkForNavigation = (query) => {
     const weatherKeywords = ["weather", "rain", "temperature", "forecast", "हवामान", "तापमान", "पाऊस"];
     const cropKeywords = ["crop", "best crop", "plant", "शेती", "पिक", "कोणते पीक"];
     const schemeKeywords = ["government scheme", "subsidy", "योजना", "सरकारी मदत", "अनुदान"];
     const pestKeywords = ["pest", "insect", "disease", "कीड", "रोग", "डाग"];
-    
+
     if (weatherKeywords.some(word => query.toLowerCase().includes(word))) {
       navigate('/weather');
       return true;
@@ -75,10 +74,10 @@ const ChatbotPage = ({ currentLang }) => {
       navigate('/pestdetect');
       return true;
     }
-    
+
     return false;
   };
-  
+
   useEffect(() => {
     setSelectedLanguage(currentLang);
   }, [currentLang]);
@@ -199,22 +198,22 @@ const ChatbotPage = ({ currentLang }) => {
   const speakText = async (text) => {
     try {
       const cleanedText = text
-        .replace(/\*\*(.*?)\*\*/g, "$1")  
-        .replace(/\*(.*?)\*/g, "$1")      
-        .replace(/`([^`]+)`/g, "$1")     
-        .replace(/\[(.*?)\]\((.*?)\)/g, "$1") 
-        .replace(/#{1,6}\s*(.*?)\n?/g, "$1") 
-        .replace(/\n+/g, " "); 
-  
+        .replace(/\*\*(.*?)\*\*/g, "$1")
+        .replace(/\*(.*?)\*/g, "$1")
+        .replace(/`([^`]+)`/g, "$1")
+        .replace(/\[(.*?)\]\((.*?)\)/g, "$1")
+        .replace(/#{1,6}\s*(.*?)\n?/g, "$1")
+        .replace(/\n+/g, " ");
+
       const voiceId = selectedLanguage === "en" ? "arman" : "diya";
       const maxTextLength = 200;
       const textChunks = cleanedText.match(new RegExp(`.{1,${maxTextLength}}(\\s|$)`, "g")) || [];
-  
+
       for (const chunk of textChunks) {
         const response = await fetch("https://waves-api.smallest.ai/api/v1/lightning/get_speech", {
           method: "POST",
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2QxY2QxZDE5MTUxNTkzMzFlYzUyM2IiLCJpYXQiOjE3NDE4MDMzNjh9.TGDZPo6btvAk2Z1DaNIK0TKUJ5ZgqL5vFLp9zt2cygI`,  
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2QxY2QxZDE5MTUxNTkzMzFlYzUyM2IiLCJpYXQiOjE3NDE4MDMzNjh9.TGDZPo6btvAk2Z1DaNIK0TKUJ5ZgqL5vFLp9zt2cygI`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -226,16 +225,16 @@ const ChatbotPage = ({ currentLang }) => {
             add_wav_header: true
           }),
         });
-  
+
         if (!response.ok) {
           const errorMessage = await response.text();
           throw new Error(`TTS API Error ${response.status}: ${errorMessage}`);
         }
-  
+
         const audioBlob = await response.blob();
         const audioUrl = URL.createObjectURL(audioBlob);
         const audio = new Audio(audioUrl);
-  
+
         await new Promise(resolve => {
           audio.onended = resolve;
           audio.play();
@@ -289,24 +288,24 @@ const ChatbotPage = ({ currentLang }) => {
 
   const createNewChat = () => {
     const newChatId = `कृषी संवाद ${Object.keys(chatHistory).length + 1}`;
-  
+
     setChatHistory((prevChatHistory) => {
       const updatedChatHistory = { ...prevChatHistory, [newChatId]: [] };
       localStorage.setItem("agriChatHistory", JSON.stringify(updatedChatHistory));
       return updatedChatHistory;
     });
-  
+
     setChatNames((prevChatNames) => {
       const updatedChatNames = { ...prevChatNames, [newChatId]: newChatId };
       localStorage.setItem("agriChatNames", JSON.stringify(updatedChatNames));
       return updatedChatNames;
     });
-  
+
     setCurrentChatId(newChatId);
     setMessages([]);
     localStorage.setItem("agriCurrentChatId", newChatId);
   };
-  
+
 
   const loadChat = (chatId) => {
     setCurrentChatId(chatId);
@@ -346,27 +345,27 @@ const ChatbotPage = ({ currentLang }) => {
 
 
   return (
-    <div className={`chat-container ${isDarkMode ? 'dark-mode' : ''}`}>
+    <div className="chat-container">
 
       {/* 🔹 Navbar (Fixed at Top) */}
-      <div className="navbar">
-        <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+      <div className="chat-navbar">
+        <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)} className='menu-icon'>
           <MenuIcon />
         </IconButton>
+
         <h2>{chatNames[currentChatId] || currentChatId}</h2>
-        {/* <Select value={selectedLanguage} onChange={(e) => setSelectedLanguage(e.target.value)}>
-          <MenuItem value="mr">मराठी</MenuItem>
-          <MenuItem value="hi">हिंदी</MenuItem>
-          <MenuItem value="en">English</MenuItem>
-        </Select> */}
-        <IconButton onClick={() => setIsDarkMode(!isDarkMode)}>
-          {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
-        </IconButton>
+ 
+
       </div>
 
       {/* 🔹 Sidebar (Collapsible) */}
-      <div className="sidebar">
-        <h3>माझ्या चॅट्स</h3>
+      <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
+        <div className="sidebar-header">
+          <h3>माझ्या चॅट्स</h3>
+          <IconButton onClick={() => setIsSidebarOpen(false)}>
+            <CloseIcon /> {/* ✅ Close button */}
+          </IconButton>
+        </div>
         {Object.keys(chatHistory).map((chatId) => (
           <div key={chatId} className={`chat-item ${chatId === currentChatId ? 'active' : ''}`}>
             {renameChatId === chatId ? (
@@ -401,6 +400,8 @@ const ChatbotPage = ({ currentLang }) => {
 
         <button className="new-chat-btn" onClick={createNewChat}>नवीन चॅट</button>
       </div>
+
+
 
 
       {/* 🔹 Chat Area */}
