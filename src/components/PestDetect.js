@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as tmImage from "@teachablemachine/image";
 import "./PestDetect.css";
-
+import newImage from "./new.png";
 const PestDetection = () => {
   const [image, setImage] = useState(null);
   const [result, setResult] = useState("");
   const [recommendation, setRecommendation] = useState("");
+  const [model, setModel] = useState(null);
+  const URL = "/my_model/"; // Path to your Teachable Machine model
 
-  const URL = "/my_model/"; // Path to your Teachable Machine model in public folder
-  let model, maxPredictions;
+  useEffect(() => {
+    const loadModel = async () => {
+      const modelURL = URL + "model.json";
+      const metadataURL = URL + "metadata.json";
+      const loadedModel = await tmImage.load(modelURL, metadataURL);
+      setModel(loadedModel);
+    };
+    loadModel();
+  }, []);
 
   const recommendations = {
     "Maize Healthy": "No action needed, maintain a regular fertilizer schedule with balanced NPK (Nitrogen, Phosphorus, Potassium). For organic options, use compost or well-rotted manure to improve soil health.",
@@ -29,13 +38,6 @@ const PestDetection = () => {
     "Tomato Verticillium Wilt": "Use resistant tomato varieties to prevent wilt. Apply potassium-rich fertilizers to boost plant health. Organic option: Use organic matter like compost or well-rotted manure, and apply organic fungicides like neem oil.",
   };
 
-  const loadModel = async () => {
-    const modelURL = URL + "model.json";
-    const metadataURL = URL + "metadata.json";
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
-  };
-
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -44,8 +46,9 @@ const PestDetection = () => {
     reader.readAsDataURL(file);
     reader.onloadend = async () => {
       setImage(reader.result);
-      await loadModel();
-      await predict(reader.result);
+      if (model) {
+        predict(reader.result);
+      }
     };
   };
 
@@ -53,14 +56,13 @@ const PestDetection = () => {
     const img = new Image();
     img.src = imageSrc;
     img.onload = async () => {
+      if (!model) return;
       const prediction = await model.predict(img);
       const highestProb = prediction.reduce((prev, curr) =>
         curr.probability > prev.probability ? curr : prev
       );
 
-      // Extracting the disease/pest name (removing probability)
       const detectedPest = highestProb.className.split(":")[0].trim();
-
       setResult(`${detectedPest}: ${highestProb.probability.toFixed(2)}`);
       setRecommendation(recommendations[detectedPest] || "No recommendation available.");
     };
@@ -70,8 +72,18 @@ const PestDetection = () => {
     <div className="container">
       <h2>कीटक तपासा</h2>
       <p>कृपया पिकाचा फोटो अपलोड करा, म्हणजे AI कीटक शोधू शकेल.</p>
-      <input type="file" onChange={handleImageChange} accept="image/*" />
-      {image && <img src={image} alt="Uploaded Preview" className="preview" />}
+
+      {/* Custom File Upload UI */}
+      <div className="upload-container ">
+        <input type="file" onChange={handleImageChange} accept="image/*" />
+        <img
+          src={image || newImage}
+          alt="Upload"
+          className="upload-image"
+        />
+        <div className=" overlay-text">📷 क्लिक करा</div>
+      </div>
+
       {result && <p className="result">ओळखलेले रोग: {result}</p>}
       {recommendation && <p className="recommendation">💡 खताची शिफारस: {recommendation}</p>}
     </div>
