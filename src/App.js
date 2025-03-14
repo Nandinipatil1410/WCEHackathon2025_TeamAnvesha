@@ -11,6 +11,8 @@ import ChatbotPage from './components/Chatbot';
 import GovtSchemes from './components/GovermentSchemes';
 import PestDetect from './components/PestDetect';
 import WeatherForecast from './components/WeatherForecast';
+import CropPredictor from './components/CropPredictor'
+
 
 
 const languages = [
@@ -86,7 +88,7 @@ function HomePage({ currentLang, setCurrentLang }) {
             </div>
             <span>{translations[currentLang]?.weather || translations["en"].weather}</span>
           </Link>
-          <Link to="/crops" className="feature-card">
+          <Link to="/crop-predict" className="feature-card">
             <div className="feature-icon">
             <img src={cropsImg} alt="Crops" className="feature-image" />
             </div>
@@ -123,6 +125,8 @@ function App() {
         <Route path="/schemes" element={<GovtSchemes currentLang={currentLang}/> } />
         <Route path="/pestdetect" element={<PestDetect currentLang={currentLang} />} />
         <Route path="/weather" element={<WeatherForecast />} />
+        
+<Route path="/crop-predict" element={<CropPredictor />} />
       </Routes>
     </Router>
   );
