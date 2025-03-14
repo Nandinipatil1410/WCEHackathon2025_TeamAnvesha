@@ -18,23 +18,24 @@ const PestDetect = ({ currentLang }) => {
   const maxPredictionsRef = useRef(null);
 
   const recommendations = {
-    "Maize Healthy": "No action needed, maintain a regular fertilizer schedule with balanced NPK (Nitrogen, Phosphorus, Potassium).",
-    "Maize Leaf Blight": "For control, use Copper-based fungicides to prevent fungal spread.",
-    "Maize Streak Virus": "Use resistant maize varieties if available. Apply fungicides to control symptoms.",
-    "Maize Common Rust": "Apply Sulfur or Mancozeb-based fungicides. Ensure a balanced nitrogen application for healthy maize.",
-    "Potato Healthy": "Continue with a balanced fertilizer application, ensuring good nitrogen, phosphorus, and potassium levels.",
-    "Potato Early Blight": "Use fungicides like Chlorothalonil to control blight. Ensure proper nitrogen levels.",
-    "Potato Late Blight": "Control late blight with Ridomil Gold or Mancozeb-based fungicides. Add potassium-rich fertilizers.",
-    "Grape Healthy": "Maintain regular fertilizer application with balanced NPK.",
-    "Grape Black Rot": "Use Sulfur-based fungicides for control. Maintain proper nitrogen levels.",
-    "Grape Esca (Black Measles)": "Apply fungicides regularly. Use resistant grape varieties if available.",
-    "Grape Leaf Blight (Isariopsis Leaf Spot)": "Use Copper-based fungicides to control the disease.",
-    "Tomato Healthy": "Ensure balanced fertilizer use, with equal ratios of Nitrogen, Phosphorus, and Potassium.",
-    "Tomato Leaf Blight": "Use Copper or Mancozeb fungicides to control leaf blight.",
-    "Tomato Leaf Curl": "Use insecticidal soap or neem oil to control insects.",
-    "Tomato Septoria Leaf Spot": "Apply Copper fungicides to prevent the spread.",
-    "Tomato Verticillium Wilt": "Use resistant tomato varieties to prevent wilt."
-  };
+    "Maize Healthy": "organic: Maintain healthy soil with compost and crop rotation.  InOrganic: Maintain a regular fertilizer schedule with balanced NPK.",
+  "Maize Leaf Blight": "organic: Use neem oil or garlic spray for fungal suppression.  InOrganic: Use Copper-based fungicides to prevent fungal spread.",
+  "Maize Streak Virus": "organic: Introduce natural predators like ladybugs to control vector insects.  InOrganic: Use resistant maize varieties if available. Apply fungicides to control symptoms.",
+  "Maize Common Rust": "organic: Spray sulfur or milk solution on affected plants.  InOrganic: Apply Sulfur or Mancozeb-based fungicides. Ensure a balanced nitrogen application.",
+  "Potato Healthy": "organic: Use compost tea and organic mulch to retain moisture.  InOrganic: Continue with a balanced fertilizer application ensuring good NPK levels.",
+  "Potato Early Blight": "organic: Apply baking soda spray and improve air circulation around plants.  InOrganic: Use fungicides like Chlorothalonil to control blight. Ensure proper nitrogen levels.",
+  "Potato Late Blight": "organic: Use copper sulfate spray and avoid overhead irrigation.  InOrganic: Control late blight with Ridomil Gold or Mancozeb-based fungicides.",
+  "Grape Healthy": "organic: Use compost and natural fertilizers like fish emulsion.  InOrganic: Maintain regular fertilizer application with balanced NPK.",
+  "Grape Black Rot": "organic: Prune affected leaves and use organic sulfur spray.  InOrganic: Use Sulfur-based fungicides for control. Maintain proper nitrogen levels.",
+  "Grape Esca (Black Measles)": "organic: Encourage beneficial soil microbes with compost tea.  InOrganic: Apply fungicides regularly. Use resistant grape varieties if available.",
+  "Grape Leaf Blight (Isariopsis Leaf Spot)": "organic: Use organic copper sprays and neem oil.  InOrganic: Use Copper-based fungicides to control the disease.",
+  "Tomato Healthy": "organic: Use fish emulsion and compost for healthy growth.  InOrganic: Ensure balanced fertilizer use with equal ratios of NPK.",
+  "Tomato Leaf Blight": "organic: Use neem oil or garlic spray as a natural antifungal.  InOrganic: Use Copper or Mancozeb fungicides to control leaf blight.",
+  "Tomato Leaf Curl": "organic: Use neem oil or insecticidal soap to control whiteflies.  InOrganic: Use insecticidal soap or neem oil to control insects.",
+  "Tomato Septoria Leaf Spot": "organic: Apply compost tea and organic sulfur spray.  InOrganic: Apply Copper fungicides to prevent the spread.",
+  "Tomato Verticillium Wilt": "organic: Use crop rotation and add beneficial mycorrhizae to the soil.  InOrganic: Use resistant tomato varieties to prevent wilt."
+};
+  
 
   useEffect(() => {
     loadModel();
@@ -214,13 +215,13 @@ const PestDetect = ({ currentLang }) => {
         </div>
 
         {translatedResult && (
-          <div className="pest-result">
+          <div className="result">
             <strong>{translations[selectedLanguage].resultLabel}:</strong> {translatedResult}
           </div>
         )}
 
         {translatedRecommendation && (
-          <div className="pest-recommendation">
+          <div className="recommendation">
             <strong>{translations[selectedLanguage].recommendationLabel}:</strong> {translatedRecommendation}
           </div>
         )}
