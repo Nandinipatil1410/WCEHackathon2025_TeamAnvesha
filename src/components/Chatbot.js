@@ -213,7 +213,7 @@ const ChatbotPage = ({ currentLang }) => {
         .replace(/#{1,6}\s*(.*?)\n?/g, "$1")
         .replace(/\n+/g, " ");
 
-      const voiceId = selectedLanguage === "en" ? "arman" : "nikita";
+      const voiceId = selectedLanguage === "en" ? "arman" : "diya";
       const maxTextLength = 200;
       const textChunks = cleanedText.match(new RegExp(`.{1,${maxTextLength}}(\\s|$)`, "g")) || [];
 
@@ -221,7 +221,7 @@ const ChatbotPage = ({ currentLang }) => {
         const response = await fetch("https://waves-api.smallest.ai/api/v1/lightning/get_speech", {
           method: "POST",
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2QxY2QxZDE5MTUxNTkzMzFlYzUyM2IiLCJpYXQiOjE3NDE4MDMzNjh9.TGDZPo6btvAk2Z1DaNIK0TKUJ5ZgqL5vFLp9zt2cygI`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2QxY2QxZDE5MTUxNTkzMzFlYzUyM2IiLCJpYXQiOjE3NDIwMDA3MDl9.WVg8wxS0aPujXcejVt3sqh1jBKyr1vkaFlhmvNqouO0`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
