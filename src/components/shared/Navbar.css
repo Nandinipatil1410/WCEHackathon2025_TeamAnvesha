@@ -13,7 +13,7 @@
   align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   z-index: 1000;
-  height: 60px;
+  height: 5rem;
   width: 100%;
   font-family: 'Poppins', sans-serif;
 }
@@ -96,7 +96,8 @@
 
   .hamburger {
     display: block;
-    position: relative;
+    position: absolute;
+    right: -3.8rem;
     z-index: 1001;
   }
 
@@ -156,6 +157,7 @@
 @media screen and (max-width: 480px) {
   .navbar {
     padding: 1rem;
+    background-color: #2dc653;
   }
 
   .nav-brand {

@@ -1,16 +1,4 @@
-.govt-navbar {
-    background-color: #33bc3a;
-    padding: 1rem 2rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
+
   
   .nav-brand {
     color: rgb(45, 118, 0);
@@ -224,18 +212,7 @@
       padding: 1.5rem;
     }
   
-    .navbar {
-      padding: 1rem;
-    }
-  
-    .nav-links {
-      gap: 1rem;
-    }
-  
-    .nav-link {
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
-    }
+    
   
     .back-nav-button {
       padding: 0.4rem;
@@ -271,25 +248,7 @@
     animation: fadeIn 0.5s ease-out;
   }
   
-  /* Add these new styles and modify existing navbar styles */
-  .nav-left {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .back-nav-button {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-  }
+ 
   
   .back-nav-button:hover {
     background: rgba(255, 255, 255, 0.1);

@@ -36,7 +36,8 @@ const ChatbotPage = ({ currentLang }) => {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(windowWidth > 768);
   const [selectedLanguage, setSelectedLanguage] = useState(currentLang || "mr");  // Use prop as initial state
   const [chatHistory, setChatHistory] = useState(() => JSON.parse(localStorage.getItem("agriChatHistory")) || {});
   const [chatNames, setChatNames] = useState(() => JSON.parse(localStorage.getItem("agriChatNames")) || {});
@@ -85,6 +86,17 @@ const ChatbotPage = ({ currentLang }) => {
     localStorage.setItem("agriChatNames", JSON.stringify(chatNames));
     localStorage.setItem("agriCurrentChatId", currentChatId);
   }, [chatHistory, chatNames, currentChatId]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setWindowWidth(width);
+      setIsSidebarOpen(width > 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -337,60 +349,11 @@ const ChatbotPage = ({ currentLang }) => {
     <>
       <Navbar currentLang={currentLang} />
       <div className="chat-container">
-        {/* 🔹 Navbar (Fixed at Top) */}
-        <div className="chat-navbar">
-          <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)} className='menu-icon'>
-            <MenuIcon />
-          </IconButton>
+        
 
-          <h2>{chatNames[currentChatId] || currentChatId}</h2>
-        </div>
 
-        {/* 🔹 Sidebar (Collapsible) */}
-        <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
-          <div className="sidebar-header">
-            <h3>माझ्या चॅट्स</h3>
-            <IconButton onClick={() => setIsSidebarOpen(false)}>
-              <CloseIcon /> {/* ✅ Close button */}
-            </IconButton>
-          </div>
-          {Object.keys(chatHistory).map((chatId) => (
-            <div key={chatId} className={`chat-item ${chatId === currentChatId ? 'active' : ''}`}>
-              {renameChatId === chatId ? (
-                <input
-                  type="text"
-                  value={renameChatName}
-                  onChange={(e) => setRenameChatName(e.target.value)}
-                />
-              ) : (
-                <span onClick={() => loadChat(chatId)}>
-                  {chatNames[chatId] || chatId}
-                </span>
-              )}
-
-              {/* Rename & Delete Buttons */}
-              {renameChatId === chatId ? (
-                <IconButton onClick={() => confirmRenameChat(chatId)}>
-                  <CheckIcon />  {/* ✅ Confirm Rename */}
-                </IconButton>
-              ) : (
-                <>
-                  <IconButton onClick={() => startRenameChat(chatId)}>
-                    <EditIcon /> {/* ✏ Rename Chat */}
-                  </IconButton>
-                  <IconButton onClick={() => deleteChat(chatId)}>
-                    <DeleteIcon /> {/* 🗑 Delete Chat */}
-                  </IconButton>
-                </>
-              )}
-            </div>
-          ))}
-
-          <button className="new-chat-btn" onClick={createNewChat}>नवीन चॅट</button>
-        </div>
-
-        {/* 🔹 Chat Area */}
-        <div className={`chat-content ${isSidebarOpen ? '' : 'full-width'}`}>
+        {/* Chat content */}
+        <div className={`chat-content ${windowWidth <= 768 && !isSidebarOpen ? 'full-width' : ''}`}>
           <div className="messages-container">
             {messages.map((msg, index) => (
               <div key={index} className={`message ${msg.sender}`}>

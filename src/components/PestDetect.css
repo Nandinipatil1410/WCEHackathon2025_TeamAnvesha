@@ -25,6 +25,8 @@ html, body {
   align-items: center;
   position: relative;
   overflow-y: visible;
+  margin-top: 80px; /* Add top margin to account for fixed navbar */
+  padding: 20px;
 }
 
 /* Header */
@@ -179,11 +181,13 @@ input[type="file"] {
 
   .action-buttons {
     flex-direction: column;
+
   }
 
   button {
     width: 100%;
-    margin: 0.2rem 0;
+    margin: auto;
+
   }
 }
 

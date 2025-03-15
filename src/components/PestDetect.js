@@ -3,6 +3,7 @@ import * as tmImage from "@teachablemachine/image";
 import "./PestDetect.css";
 import newImage from './new.png'
 import { Link } from "react-router-dom";
+import Navbar from './shared/Navbar';
 
 const URL = "/my_model/";
 
@@ -183,15 +184,7 @@ const PestDetect = ({ currentLang }) => {
   };
   return (
     <>
-      <nav className="navbar">
-        <Link to="/" className="nav-brand">AgriSeva</Link>
-        <div className="nav-links">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/pest-detect" className="nav-link active">Pest Detection</Link>
-          <Link to="/schemes" className="nav-link">Schemes</Link>
-          <Link to="/chatbot" className="nav-link">Chat Bot</Link>
-        </div>
-      </nav>
+      <Navbar currentLang={currentLang} />
 
       <div className="pest-container">
         <div className="pest-header">
