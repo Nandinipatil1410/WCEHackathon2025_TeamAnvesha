@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./GovernmentSchemes.css";
+import Navbar from './shared/Navbar';
 
 
 const schemes = [
@@ -294,16 +295,7 @@ export default function GovtSchemes({ currentLang }) {
 
   return (
     <>
-      <nav className="govt-navbar">
-        <div className="nav-brand">AgriSeva</div>
-        <div className="nav-links">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/pestdetect" className="nav-link">Pest Detection</Link>
-          <Link to="/schemes" className="nav-link active">Schemes</Link>
-          <Link to="/chatbot" className="nav-link">Chat Bot</Link>
-        </div>
-      </nav>
-
+      <Navbar currentLang={currentLang} />
       <div className="govt-container">
         {!selectedScheme ? (
           <>
