@@ -6,8 +6,7 @@ import { Menu as MenuIcon, Edit as EditIcon, Delete as DeleteIcon, Mic as MicIco
 import './Chatbot.css'
 import { Check as CheckIcon } from '@mui/icons-material';
 import CloseIcon from "@mui/icons-material/Close";
-
-
+import Navbar from './shared/Navbar';
 
 const translations = {
   en: {
@@ -32,7 +31,6 @@ const translations = {
     selectLanguage: "भाषा चुनें",
   }
 };
-
 
 const ChatbotPage = ({ currentLang }) => {
   const navigate = useNavigate();
@@ -82,7 +80,6 @@ const ChatbotPage = ({ currentLang }) => {
     setSelectedLanguage(currentLang);
   }, [currentLang]);
 
-
   useEffect(() => {
     localStorage.setItem("agriChatHistory", JSON.stringify(chatHistory));
     localStorage.setItem("agriChatNames", JSON.stringify(chatNames));
@@ -99,7 +96,6 @@ const ChatbotPage = ({ currentLang }) => {
     }
 
     setIsLoading(true);
-
 
     try {
       const userMessage = { text: input, sender: 'user' };
@@ -245,9 +241,7 @@ const ChatbotPage = ({ currentLang }) => {
     }
   };
 
-
   const formatBotResponse = (text, language) => {
-
     const devanagariRegex = /[\u0900-\u097F]/;
     const isDevanagari = devanagariRegex.test(text);
 
@@ -271,7 +265,6 @@ const ChatbotPage = ({ currentLang }) => {
       .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')
       .replace(/#{1,6}\s*(.*?)\n/g, "<b>$1</b><br/>");
   };
-
 
   {
     messages.map((msg, index) => (
@@ -306,12 +299,10 @@ const ChatbotPage = ({ currentLang }) => {
     localStorage.setItem("agriCurrentChatId", newChatId);
   };
 
-
   const loadChat = (chatId) => {
     setCurrentChatId(chatId);
     setMessages(chatHistory[chatId] || []);
   };
-
 
   const startRenameChat = (chatId) => {
     setRenameChatId(chatId);
@@ -342,96 +333,90 @@ const ChatbotPage = ({ currentLang }) => {
     }
   };
 
-
-
   return (
-    <div className="chat-container">
-
-      {/* 🔹 Navbar (Fixed at Top) */}
-      <div className="chat-navbar">
-        <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)} className='menu-icon'>
-          <MenuIcon />
-        </IconButton>
-
-        <h2>{chatNames[currentChatId] || currentChatId}</h2>
- 
-
-      </div>
-
-      {/* 🔹 Sidebar (Collapsible) */}
-      <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
-        <div className="sidebar-header">
-          <h3>माझ्या चॅट्स</h3>
-          <IconButton onClick={() => setIsSidebarOpen(false)}>
-            <CloseIcon /> {/* ✅ Close button */}
+    <>
+      <Navbar currentLang={currentLang} />
+      <div className="chat-container">
+        {/* 🔹 Navbar (Fixed at Top) */}
+        <div className="chat-navbar">
+          <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)} className='menu-icon'>
+            <MenuIcon />
           </IconButton>
+
+          <h2>{chatNames[currentChatId] || currentChatId}</h2>
         </div>
-        {Object.keys(chatHistory).map((chatId) => (
-          <div key={chatId} className={`chat-item ${chatId === currentChatId ? 'active' : ''}`}>
-            {renameChatId === chatId ? (
-              <input
-                type="text"
-                value={renameChatName}
-                onChange={(e) => setRenameChatName(e.target.value)}
-              />
-            ) : (
-              <span onClick={() => loadChat(chatId)}>
-                {chatNames[chatId] || chatId}
-              </span>
-            )}
 
-            {/* Rename & Delete Buttons */}
-            {renameChatId === chatId ? (
-              <IconButton onClick={() => confirmRenameChat(chatId)}>
-                <CheckIcon />  {/* ✅ Confirm Rename */}
-              </IconButton>
-            ) : (
-              <>
-                <IconButton onClick={() => startRenameChat(chatId)}>
-                  <EditIcon /> {/* ✏ Rename Chat */}
-                </IconButton>
-                <IconButton onClick={() => deleteChat(chatId)}>
-                  <DeleteIcon /> {/* 🗑 Delete Chat */}
-                </IconButton>
-              </>
-            )}
+        {/* 🔹 Sidebar (Collapsible) */}
+        <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
+          <div className="sidebar-header">
+            <h3>माझ्या चॅट्स</h3>
+            <IconButton onClick={() => setIsSidebarOpen(false)}>
+              <CloseIcon /> {/* ✅ Close button */}
+            </IconButton>
           </div>
-        ))}
+          {Object.keys(chatHistory).map((chatId) => (
+            <div key={chatId} className={`chat-item ${chatId === currentChatId ? 'active' : ''}`}>
+              {renameChatId === chatId ? (
+                <input
+                  type="text"
+                  value={renameChatName}
+                  onChange={(e) => setRenameChatName(e.target.value)}
+                />
+              ) : (
+                <span onClick={() => loadChat(chatId)}>
+                  {chatNames[chatId] || chatId}
+                </span>
+              )}
 
-        <button className="new-chat-btn" onClick={createNewChat}>नवीन चॅट</button>
-      </div>
-
-
-
-
-      {/* 🔹 Chat Area */}
-      <div className={`chat-content ${isSidebarOpen ? '' : 'full-width'}`}>
-        <div className="messages-container">
-          {messages.map((msg, index) => (
-            <div key={index} className={`message ${msg.sender}`}>
-              <p className="formatted-text" dangerouslySetInnerHTML={{ __html: msg.sender === 'bot' ? formatBotResponse(msg.text, selectedLanguage) : msg.text }}></p>
-              {msg.sender === 'bot' && (
-                <IconButton onClick={() => speakText(msg.text)}>
-                  <VolumeUpIcon />
+              {/* Rename & Delete Buttons */}
+              {renameChatId === chatId ? (
+                <IconButton onClick={() => confirmRenameChat(chatId)}>
+                  <CheckIcon />  {/* ✅ Confirm Rename */}
                 </IconButton>
+              ) : (
+                <>
+                  <IconButton onClick={() => startRenameChat(chatId)}>
+                    <EditIcon /> {/* ✏ Rename Chat */}
+                  </IconButton>
+                  <IconButton onClick={() => deleteChat(chatId)}>
+                    <DeleteIcon /> {/* 🗑 Delete Chat */}
+                  </IconButton>
+                </>
               )}
             </div>
           ))}
 
-          {isLoading && <div className="message bot loading"><span>...</span></div>}
+          <button className="new-chat-btn" onClick={createNewChat}>नवीन चॅट</button>
         </div>
 
-        {/* 🔹 Input Box (Fixed at Bottom) */}
-        <div className="chat-input">
-          <input type="text" placeholder="तुमचा संदेश टाइप करा..." value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()} />
-          <IconButton onClick={handleVoiceInput} color={isListening ? "secondary" : "primary"}>
-            <MicIcon />
-          </IconButton>
-          <IconButton onClick={handleSend}><SendIcon /></IconButton>
+        {/* 🔹 Chat Area */}
+        <div className={`chat-content ${isSidebarOpen ? '' : 'full-width'}`}>
+          <div className="messages-container">
+            {messages.map((msg, index) => (
+              <div key={index} className={`message ${msg.sender}`}>
+                <p className="formatted-text" dangerouslySetInnerHTML={{ __html: msg.sender === 'bot' ? formatBotResponse(msg.text, selectedLanguage) : msg.text }}></p>
+                {msg.sender === 'bot' && (
+                  <IconButton onClick={() => speakText(msg.text)}>
+                    <VolumeUpIcon />
+                  </IconButton>
+                )}
+              </div>
+            ))}
+
+            {isLoading && <div className="message bot loading"><span>...</span></div>}
+          </div>
+
+          {/* 🔹 Input Box (Fixed at Bottom) */}
+          <div className="chat-input">
+            <input type="text" placeholder="तुमचा संदेश टाइप करा..." value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()} />
+            <IconButton onClick={handleVoiceInput} color={isListening ? "secondary" : "primary"}>
+              <MicIcon />
+            </IconButton>
+            <IconButton onClick={handleSend}><SendIcon /></IconButton>
+          </div>
         </div>
       </div>
-
-    </div>
+    </>
   );
 };
 
