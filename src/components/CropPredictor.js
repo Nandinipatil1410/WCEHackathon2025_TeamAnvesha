@@ -77,7 +77,63 @@ const CropPredictor = ({ currentLang }) => {
     loadModel();
     translateAllText();
   }, [currentLang]);
-
+  const cropRecommendations = {
+    "January": {
+      "Alkaline (Clayey)": ["Lentil", "Mango"],
+      "Neutral (Loamy)": ["Lentil", "Mango", "Grapes"]
+    },
+    "February": {
+      "Neutral (Loamy)": ["Lentil", "Pomegranate", "Mango", "Grapes", "Muskmelon"],
+      "Acidic (Sandy)": ["Mango"]
+    },
+    "March": {
+      "Neutral (Loamy)": ["Kidneybeans", "Mungbean", "Grapes", "Watermelon", "Muskmelon"]
+    },
+    "April": {
+      "Neutral (Loamy)": ["Kidneybeans", "Mungbean", "Pomegranate", "Muskmelon", "Cotton", "Jute"],
+      "Alkaline (Clayey)": ["Cotton"]
+    },
+    "May": {
+      "Neutral (Loamy)": ["Maize", "Kidneybeans", "Mungbean", "Watermelon", "Cotton", "Jute"]
+    },
+    "June": {
+      "Neutral (Loamy)": ["Rice", "Maize",   "Blackgram", "Cotton"],
+      "Alkaline (Clayey)": ["Rice", "Blackgram", "Cotton"],
+      "Acidic (Sandy)": ["Rice", "Pigeonpeas"]
+    },
+    "July": {
+      "Neutral (Loamy)": ["Rice", "Maize",   "Blackgram", "Mothbeans", "Orange"],
+      "Alkaline (Clayey)": ["Rice", "Mothbeans", "Blackgram", "Orange"],
+      "Acidic (Sandy)": ["Rice",   "Mothbeans"]
+    },
+    "August": {
+      "Neutral (Loamy)": ["Rice",   "Blackgram", "Mothbeans", "Orange"],
+      "Alkaline (Clayey)": ["Rice", "Blackgram", "Mothbeans", "Orange"],
+      "Acidic (Sandy)": ["Rice",   "Mothbeans"]
+    },
+    "September": {
+      "Neutral (Loamy)": ["Mothbeans", "Coffee"],
+      "Alkaline (Clayey)": ["Mothbeans", "Orange"],
+      "Acidic (Sandy)": ["Mothbeans"]
+    },
+    "October": {
+      "Neutral (Loamy)": ["Chickpea", "Coffee", "Apple"],
+      "Alkaline (Clayey)": ["Chickpea"]
+    },
+    "November": {
+      "Neutral (Loamy)": ["Chickpea", "Lentil", "Apple", "Coffee"],
+      "Alkaline (Clayey)": ["Chickpea", "Lentil"]
+    },
+    "December": {
+      "Neutral (Loamy)": ["Chickpea", "Lentil", "Mango", "Apple"],
+      "Alkaline (Clayey)": ["Chickpea", "Lentil"],
+      "Acidic (Sandy)": ["Mango"]
+    },
+    "All Year": {
+      "Neutral (Loamy)": ["Banana", "Papaya", "Coconut"]
+    }
+  };
+  
   const loadModel = async () => {
     try {
       console.log('Attempting to load model...');
@@ -109,30 +165,30 @@ const CropPredictor = ({ currentLang }) => {
   };
 
   const handlePredict = async () => {
-    if (!model || !selectedMonth || !selectedSoil) {
-      console.log("Model or input data is missing.");
+    if (!selectedMonth || !selectedSoil) {
+      console.log("Input data is missing.");
       return;
     }
-
-    console.log("Making prediction...");
+  
+    console.log(`Fetching recommendations for ${selectedMonth} - ${selectedSoil}`);
     setLoading(true);
+  
     try {
-      const input = tf.tensor2d([[monthToNumber[selectedMonth], soilTypeToNumber[selectedSoil]]]);
-      console.log(`Input data: [${monthToNumber[selectedMonth]}, ${soilTypeToNumber[selectedSoil]}]`);
-      const prediction = model.predict(input);
-      const predictedCropIndex = prediction.argMax(1).dataSync()[0];
-      console.log(`Predicted crop index: ${predictedCropIndex}`);
-      const predictedCrop = numberToCrop[predictedCropIndex];
-
-      const translatedCrop = await translateText(predictedCrop, currentLang);
-      setPrediction(translatedCrop);
-      console.log(`Predicted crop: ${translatedCrop}`);
+      const crops = cropRecommendations[selectedMonth]?.[selectedSoil] || [];
+      if (crops.length === 0) {
+        setPrediction("No suitable crops found for this combination.");
+        return;
+      }
+  
+      const translatedCrops = await Promise.all(crops.map(crop => translateText(crop, currentLang)));
+      setPrediction(translatedCrops.join(", "));
     } catch (error) {
-      console.error('Prediction error:', error);
+      console.error("Error fetching recommendations:", error);
     }
+  
     setLoading(false);
   };
-
+  
   const speakText = async (text, lang) => {
     try {
       console.log(`Speaking text: "${text}" in language: ${lang}`);

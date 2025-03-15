@@ -25,7 +25,7 @@ html, body {
   align-items: center;
   position: relative;
   overflow-y: visible;
-  margin-top: 80px; /* Add top margin to account for fixed navbar */
+  margin-top: 10rem; /* Add top margin to account for fixed navbar */
   padding: 20px;
 }
 

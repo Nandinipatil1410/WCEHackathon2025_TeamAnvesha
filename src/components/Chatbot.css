@@ -37,9 +37,7 @@
 
 .chat-content {
   flex: 1;
-  margin-left: 280px;
-  transition: margin-left 0.3s ease-in-out;
-  width: calc(100% - 280px);
+  width: 100%;
   position: relative;
 }
 
@@ -125,13 +123,16 @@
 .chat-input {
   position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   padding: 15px;
   background-color: #fff;
   border-top: 1px solid #ddd;
   display: flex;
   align-items: center;
   gap: 10px;
-  width: inherit;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .chat-input input {
@@ -190,7 +191,7 @@
 
   .chat-input {
     padding: 10px;
-    bottom: 0;
+    width: 100%;
   }
 
   .chat-input input {
@@ -233,8 +234,8 @@
 /* Fix for chat input width */
 @media (min-width: 769px) {
   .chat-input {
-    width: calc(100% - 280px);
-    left: 280px;
+    width: 100%;
+    left: 0;
   }
 
   .chat-content.full-width .chat-input {
@@ -242,10 +243,6 @@
     left: 0;
   }
 }
-
-
-
-
 
 @media (hover: none) {
   .chat-item:hover {
@@ -260,4 +257,3 @@
     background-color: #14746f;
   }
 }
-

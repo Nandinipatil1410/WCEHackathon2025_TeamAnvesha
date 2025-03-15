@@ -69,7 +69,7 @@ const Navbar = ({ currentLang, setCurrentLang }) => {
 
   return (
     <nav className="shared-navbar" ref={navRef}>
-      <Link to="/" className="nav-brand">{translatedTexts.brand}</Link>
+      <Link to="/" className="nav-brand">{"AgriSeva"}</Link>
 
       {/* Hamburger menu button */}
       <button 

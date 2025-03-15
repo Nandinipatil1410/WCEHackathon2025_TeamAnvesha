@@ -66,6 +66,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
+  margin: auto;
 }
 
 .predict-button:hover {

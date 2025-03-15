@@ -66,7 +66,8 @@ function HomePage({ currentLang, setCurrentLang }) {
 
   return (
     <div className="home-container">
-      <MainNavbar currentLang={currentLang}/>
+      <MainNavbar  currentLang={currentLang} 
+  setCurrentLang={setCurrentLang}  />
       <div className="main-content">
         <div className="plant-avatar">
           <Link to="/chatbot">
