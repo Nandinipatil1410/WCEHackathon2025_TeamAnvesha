@@ -23,19 +23,14 @@ const WeatherForecast = ({currentLang}) => {
         setLoading(true);
         setError(null);
         
-        // 1. फाइल नाव तपासा
         const fileName = cityFileMap[city];
         if (!fileName) throw new Error("अवैध शहर निवड");
 
-        // 2. डेटा मिळवा
         const response = await fetch(`${process.env.PUBLIC_URL}/${fileName}`);
         
-        // 3. HTTP एरर तपासा
         if (!response.ok) {
           throw new Error(`HTTP त्रुटी: ${response.status} - ${await response.text()}`);
         }
-
-        // 4. JSON पार्स करा
         const rawData = await response.text();
         let data;
         try {
@@ -44,12 +39,10 @@ const WeatherForecast = ({currentLang}) => {
           throw new Error(`JSON पार्स त्रुटी: ${e.message}`);
         }
 
-        // 5. डेटा संरचना तपासा
         if (!data || !Array.isArray(data)) {
           throw new Error("JSON मध्ये 'weather_data' अॅरे आढळला नाही");
         }
 
-        // 6. प्रत्येक एंट्री तपासा
         data.forEach((entry, index) => {
           if (!entry.time || typeof entry.time !== "string") {
             throw new Error(`अवैध time फील्ड @ index ${index}`);
