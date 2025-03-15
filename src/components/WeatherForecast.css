@@ -4,7 +4,7 @@ weather_forecast.css-* {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-
+/* 
 body {
   background: linear-gradient(to bottom right, #e8f5e9, #7eb780);
   display: flex;
@@ -12,7 +12,7 @@ body {
   align-items: center;
   height: 100vh;
   text-align: center;
-}
+} */
 
 .weather-p{
   margin-bottom: 1rem;

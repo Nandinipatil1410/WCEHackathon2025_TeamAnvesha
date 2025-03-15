@@ -118,11 +118,11 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage currentLang={currentLang} setCurrentLang={setCurrentLang} />} />
         <Route path="/chatbot" element={<ChatbotPage />} />
-        <Route path="/schemes" element={<GovtSchemes currentLang={currentLang}/> } />
-        <Route path="/pestdetect" element={<PestDetect currentLang={currentLang} />} />
-        <Route path="/weather" element={<WeatherForecast currentLang={currentLang}/>} />
+        <Route path="/schemes" element={<GovtSchemes currentLang={currentLang} setCurrentLang={setCurrentLang}/> } />
+        <Route path="/pestdetect" element={<PestDetect currentLang={currentLang} setCurrentLang={setCurrentLang}/>} />
+        <Route path="/weather" element={<WeatherForecast currentLang={currentLang} setCurrentLang={setCurrentLang}/>} />
         
-<Route path="/crop-predict" element={<CropPredictor currentLang={currentLang}/>} />
+<Route path="/crop-predict" element={<CropPredictor currentLang={currentLang} setCurrentLang={setCurrentLang}/>} />
       </Routes>
     </Router>
   );

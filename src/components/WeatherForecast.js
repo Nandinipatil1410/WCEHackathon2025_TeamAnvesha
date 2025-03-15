@@ -17,25 +17,83 @@ const WeatherForecast = ({currentLang}) => {
     "कोल्हापूर": "weather_data_kolhapur.json"
   };
 
+  const translations = {
+    en: {
+      title: "Weather Forecast",
+      subtitle: "Please select a city and month",
+      loading: "Loading...",
+      noData: "No data available for this month.",
+      bestSowingDay: "Best Day for Sowing",
+      warning: "Warning",
+      notSafe: "Sowing is not safe this month.",
+      cityPlaceholder: "Select City",
+      monthPlaceholder: "Select Month",
+    },
+    hi: {
+      title: "हवामान अंदाज",
+      subtitle: "कृपया शहर और महीना चुनें",
+      loading: "लोड हो रहा है...",
+      noData: "इस महीने के लिए डेटा उपलब्ध नहीं है।",
+      bestSowingDay: "बुआई के लिए सबसे अच्छा दिन",
+      warning: "चेतावनी",
+      notSafe: "इस महीने बुआई सुरक्षित नहीं है।",
+      cityPlaceholder: "शहर चुनें",
+      monthPlaceholder: "महीना चुनें",
+    },
+    mr: {
+      title: "हवामान अंदाज",
+      subtitle: "कृपया शहर आणि महिना निवडा",
+      loading: "लोड करत आहे...",
+      noData: "या महिन्यातील डेटा उपलब्ध नाही.",
+      bestSowingDay: "पेरणीसाठी योग्य दिवस",
+      warning: "सावधान",
+      notSafe: "या महिन्यात पेरणी सुरक्षित नाही",
+      cityPlaceholder: "शहर निवडा",
+      monthPlaceholder: "महिना निवडा",
+    },
+    te: {
+      title: "వాతావరణ సూచన",
+      subtitle: "దయచేసి నగరం మరియు నెలను ఎంచుకోండి",
+      loading: "లోడ్ అవుతోంది...",
+      noData: "ఈ నెలకు డేటా అందుబాటులో లేదు.",
+      bestSowingDay: "విత్తనం కోసం ఉత్తమమైన రోజు",
+      warning: "హెచ్చరిక",
+      notSafe: "ఈ నెలలో విత్తనం సురక్షితం కాదు.",
+      cityPlaceholder: "నగరం ఎంచుకోండి",
+      monthPlaceholder: "నెల ఎంచుకోండి",
+    },
+    pa: {
+      title: "ਮੌਸਮ ਦੀ ਪੇਸ਼ਗੋਈ",
+      subtitle: "ਕਿਰਪਾ ਕਰਕੇ ਸ਼ਹਿਰ ਅਤੇ ਮਹੀਨਾ ਚੁਣੋ",
+      loading: "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...",
+      noData: "ਇਸ ਮਹੀਨੇ ਲਈ ਡੇਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
+      bestSowingDay: "ਬੀਜਣ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ ਦਿਨ",
+      warning: "ਚੇਤਾਵਨੀ",
+      notSafe: "ਇਸ ਮਹੀਨੇ ਬੀਜਣਾ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਹੈ।",
+      cityPlaceholder: "ਸ਼ਹਿਰ ਚੁਣੋ",
+      monthPlaceholder: "ਮਹੀਨਾ ਚੁਣੋ",
+    },
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         setError(null);
         
-        // 1. फाइल नाव तपासा
+        
         const fileName = cityFileMap[city];
         if (!fileName) throw new Error("अवैध शहर निवड");
 
-        // 2. डेटा मिळवा
+        
         const response = await fetch(`${process.env.PUBLIC_URL}/${fileName}`);
         
-        // 3. HTTP एरर तपासा
+        
         if (!response.ok) {
           throw new Error(`HTTP त्रुटी: ${response.status} - ${await response.text()}`);
         }
 
-        // 4. JSON पार्स करा
+
         const rawData = await response.text();
         let data;
         try {
@@ -44,18 +102,18 @@ const WeatherForecast = ({currentLang}) => {
           throw new Error(`JSON पार्स त्रुटी: ${e.message}`);
         }
 
-        // 5. डेटा संरचना तपासा
+        
         if (!data || !Array.isArray(data)) {
           throw new Error("JSON मध्ये 'weather_data' अॅरे आढळला नाही");
         }
 
-        // 6. प्रत्येक एंट्री तपासा
+        
         data.forEach((entry, index) => {
           if (!entry.time || typeof entry.time !== "string") {
             throw new Error(`अवैध time फील्ड @ index ${index}`);
           }
 
-          // Check the correct field names with '(mm)' suffix
+          
           if (
             typeof entry["precipitation_sum_member01 (mm)"] === "undefined" ||
             typeof entry["precipitation_sum_member02 (mm)"] === "undefined" ||
@@ -66,7 +124,7 @@ const WeatherForecast = ({currentLang}) => {
           }
         });
 
-        // 7. डेटा प्रक्रिया
+        
         const filteredData = data
           .filter(item => item.time.startsWith(selectedMonth))
           .sort((a, b) => new Date(a.time) - new Date(b.time));
@@ -119,42 +177,52 @@ const WeatherForecast = ({currentLang}) => {
     return new Date(dateString).toLocaleDateString("mr-IN", options);
   };
 
+
   return (
     <>
-
-    <Navbar currentLang={currentLang}/>
-
+      <Navbar currentLang={currentLang} />
+  
       <div className="weather-container">
         <div className="weather-header">
-          <h1 className="weather-title">हवामान अंदाज</h1>
-          <p className="weather-p">कृपया शहर आणि महिना निवडा</p>
+          <h1 className="weather-title">{translations[currentLang]?.title}</h1>
+          <p className="weather-p">{translations[currentLang]?.subtitle}</p>
         </div>
-
+  
         <div className="weather-search-filters">
           <select
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            className="dropdown"  >
+            className="dropdown"
+          >
+            <option value="" disabled>
+              {translations[currentLang]?.cityPlaceholder}
+            </option>
             {Object.entries(cityFileMap).map(([cityName, fileName]) => (
-              <option key={fileName} value={cityName}>{cityName}</option>
+              <option key={fileName} value={cityName}>
+                {cityName}
+              </option>
             ))}
           </select>
-            <br></br>
+          <br />
           <select
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(e.target.value)}
-            className="dropdown" >
+            className="dropdown"
+          >
+            <option value="" disabled>
+              {translations[currentLang]?.monthPlaceholder}
+            </option>
             <option value="2025-03">मार्च 2025</option>
             <option value="2025-04">एप्रिल 2025</option>
             <option value="2025-05">मे 2025</option>
             <option value="2025-06">जून 2025</option>
           </select>
         </div>
-
+  
         {loading ? (
           <div className="loading-container">
             <div className="loading-spinner"></div>
-            <p>लोड करत आहे...</p>
+            <p>{translations[currentLang]?.loading}</p>
           </div>
         ) : error ? (
           <div className="error-card">
@@ -164,19 +232,19 @@ const WeatherForecast = ({currentLang}) => {
           <div className="weather-grid">
             <div className="weather-card">
               {weatherData.length === 0 ? (
-                <p className="no-data">या महिन्यातील डेटा उपलब्ध नाही.</p>
+                <p className="no-data">{translations[currentLang]?.noData}</p>
               ) : bestSowingDate ? (
                 <div className="result-content">
-                  <h3>पेरणीसाठी योग्य दिवस</h3>
+                  <h3>{translations[currentLang]?.bestSowingDay}</h3>
                   <p className="success-message">
                     {formatDate(bestSowingDate)}
                   </p>
                 </div>
               ) : (
                 <div className="result-content">
-                  <h3>सावधान</h3>
+                  <h3>{translations[currentLang]?.warning}</h3>
                   <p className="warning-message">
-                    या महिन्यात पेरणी सुरक्षित नाही
+                    {translations[currentLang]?.notSafe}
                   </p>
                 </div>
               )}
