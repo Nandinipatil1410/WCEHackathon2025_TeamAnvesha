@@ -88,12 +88,9 @@ const WeatherForecast = ({currentLang}) => {
         
         const response = await fetch(`${process.env.PUBLIC_URL}/${fileName}`);
         
-        
         if (!response.ok) {
           throw new Error(`HTTP त्रुटी: ${response.status} - ${await response.text()}`);
         }
-
-
         const rawData = await response.text();
         let data;
         try {
@@ -102,12 +99,10 @@ const WeatherForecast = ({currentLang}) => {
           throw new Error(`JSON पार्स त्रुटी: ${e.message}`);
         }
 
-        
         if (!data || !Array.isArray(data)) {
           throw new Error("JSON मध्ये 'weather_data' अॅरे आढळला नाही");
         }
 
-        
         data.forEach((entry, index) => {
           if (!entry.time || typeof entry.time !== "string") {
             throw new Error(`अवैध time फील्ड @ index ${index}`);
