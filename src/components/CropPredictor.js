@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import * as tf from '@tensorflow/tfjs';
 import './CropPredictor.css';
+import Navbar from './shared/Navbar';
 
 const translateText = async (text, targetLang) => {
   try {
@@ -184,16 +185,7 @@ const CropPredictor = ({ currentLang }) => {
 
   return (
     <>
-      <nav className="navbar">
-        <div className="nav-brand">AgriSeva</div>
-        <div className="nav-links">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/pest-detect" className="nav-link">Pest Detection</Link>
-          <Link to="/schemes" className="nav-link">Schemes</Link>
-          <Link to="/chatbot" className="nav-link">Chat Bot</Link>
-        </div>
-      </nav>
-
+      <Navbar currentLang={currentLang} />
       <div className="container">
         <div className="header">
           <h1>{translatedText.title || texts.title}</h1>
