@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./WeatherForecast.css";
+import Navbar from './shared/Navbar';
 
-const WeatherForecast = () => {
+const WeatherForecast = ({currentLang}) => {
   const [city, setCity] = useState("सांगली");
   const [selectedMonth, setSelectedMonth] = useState("2025-03");
   const [weatherData, setWeatherData] = useState([]);
@@ -120,38 +121,29 @@ const WeatherForecast = () => {
 
   return (
     <>
-      <nav className="navbar">
-        <div className="nav-brand">AgriSeva</div>
-        <div className="nav-links">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/pest-detect" className="nav-link">Pest Detection</Link>
-          <Link to="/schemes" className="nav-link">Schemes</Link>
-          <Link to="/chatbot" className="nav-link">Chat Bot</Link>
-        </div>
-      </nav>
 
-      <div className="container">
-        <div className="header">
-          <h1 className="title">हवामान अंदाज</h1>
-          <p>कृपया शहर आणि महिना निवडा</p>
+    <Navbar currentLang={currentLang}/>
+
+      <div className="weather-container">
+        <div className="weather-header">
+          <h1 className="weather-title">हवामान अंदाज</h1>
+          <p className="weather-p">कृपया शहर आणि महिना निवडा</p>
         </div>
 
-        <div className="search-filters">
+        <div className="weather-search-filters">
           <select
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            className="dropdown"
-          >
+            className="dropdown"  >
             {Object.entries(cityFileMap).map(([cityName, fileName]) => (
               <option key={fileName} value={cityName}>{cityName}</option>
             ))}
           </select>
-
+            <br></br>
           <select
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(e.target.value)}
-            className="dropdown"
-          >
+            className="dropdown" >
             <option value="2025-03">मार्च 2025</option>
             <option value="2025-04">एप्रिल 2025</option>
             <option value="2025-05">मे 2025</option>
@@ -197,4 +189,3 @@ const WeatherForecast = () => {
 };
 
 export default WeatherForecast;
-

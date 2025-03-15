@@ -1,9 +1,0 @@
-.status-active {
-  background-color: #e8f5e9;
-  color: #2e7d32;  /* Dark green */
-}
-
-.status-expiring {
-  background-color: #ffebee;  /* Light red background */
-  color: #c62828;  /* Dark red text */
-} 

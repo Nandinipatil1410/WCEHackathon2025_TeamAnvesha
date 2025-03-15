@@ -69,12 +69,13 @@
 }
 
 .predict-button:hover {
-  background: #1b5e20;
+  background: #14746f;
 }
 
 .predict-button:disabled {
   background: #cccccc;
   cursor: not-allowed;
+  margin: auto;
 }
 
 .result-card {

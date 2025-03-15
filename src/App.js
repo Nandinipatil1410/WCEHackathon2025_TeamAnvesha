@@ -11,7 +11,9 @@ import ChatbotPage from './components/Chatbot';
 import GovtSchemes from './components/GovermentSchemes';
 import PestDetect from './components/PestDetect';
 import WeatherForecast from './components/WeatherForecast';
-import CropPredictor from './components/CropPredictor'
+import CropPredictor from './components/CropPredictor';
+
+import MainNavbar from './components/MainNavbar';
 
 
 
@@ -64,14 +66,7 @@ function HomePage({ currentLang, setCurrentLang }) {
 
   return (
     <div className="home-container">
-      <nav className="nav-bar">
-        <div className="logo">AgriSeva</div>
-        <select value={currentLang} onChange={(e) => setCurrentLang(e.target.value)} className="language-select">
-          {languages.map(lang => (
-            <option key={lang.code} value={lang.code}>{lang.name}</option>
-          ))}
-        </select>
-      </nav>
+      <MainNavbar currentLang={currentLang}/>
       <div className="main-content">
         <div className="plant-avatar">
           <Link to="/chatbot">
@@ -124,7 +119,7 @@ function App() {
         <Route path="/chatbot" element={<ChatbotPage />} />
         <Route path="/schemes" element={<GovtSchemes currentLang={currentLang}/> } />
         <Route path="/pestdetect" element={<PestDetect currentLang={currentLang} />} />
-        <Route path="/weather" element={<WeatherForecast />} />
+        <Route path="/weather" element={<WeatherForecast currentLang={currentLang}/>} />
         
 <Route path="/crop-predict" element={<CropPredictor currentLang={currentLang}/>} />
       </Routes>
