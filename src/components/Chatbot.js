@@ -1,36 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
-import { Menu as MenuIcon, Edit as EditIcon, Delete as DeleteIcon, Mic as MicIcon, Send as SendIcon, LightMode as LightModeIcon, DarkMode as DarkModeIcon, VolumeUp as VolumeUpIcon } from '@mui/icons-material';
+import {Mic as MicIcon, Send as SendIcon,  VolumeUp as VolumeUpIcon } from '@mui/icons-material';
 import './Chatbot.css'
-import { Check as CheckIcon } from '@mui/icons-material';
-import CloseIcon from "@mui/icons-material/Close";
+
 import Navbar from './shared/Navbar';
 
-const translations = {
-  en: {
-    title: "Agriculture Chatbot",
-    newChat: "New Chat",
-    myChats: "My Chats",
-    typeMessage: "Type your message...",
-    selectLanguage: "Select Language",
-  },
-  mr: {
-    title: "कृषी संवाद",
-    newChat: "नवीन चॅट",
-    myChats: "माझ्या चॅट्स",
-    typeMessage: "तुमचा संदेश टाइप करा...",
-    selectLanguage: "भाषा निवडा",
-  },
-  hi: {
-    title: "कृषि संवाद",
-    newChat: "नयी चैट",
-    myChats: "मेरी चैट्स",
-    typeMessage: "अपना संदेश टाइप करें...",
-    selectLanguage: "भाषा चुनें",
-  }
-};
 
 const ChatbotPage = ({ currentLang }) => {
   const navigate = useNavigate();
@@ -43,7 +18,7 @@ const ChatbotPage = ({ currentLang }) => {
   const [chatNames, setChatNames] = useState(() => JSON.parse(localStorage.getItem("agriChatNames")) || {});
   const [currentChatId, setCurrentChatId] = useState(() => localStorage.getItem("agriCurrentChatId") || "कृषी संवाद 1");
   const [messages, setMessages] = useState(chatHistory[currentChatId] || []);
-  const [renameChatId, setRenameChatId] = useState(null);
+  
   const [renameChatName, setRenameChatName] = useState("");
   const [isListening, setIsListening] = useState(false);
   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
@@ -62,7 +37,7 @@ const ChatbotPage = ({ currentLang }) => {
       return true;
     }
     if (cropKeywords.some(word => query.toLowerCase().includes(word))) {
-      navigate('/crop-recommendation');
+      navigate('/crop-predict');
       return true;
     }
     if (schemeKeywords.some(word => query.toLowerCase().includes(word))) {
@@ -119,13 +94,17 @@ const ChatbotPage = ({ currentLang }) => {
       });
       setInput('');
 
-      const response = await fetch('http://localhost:5000/api/nvidia', {
+      const response = await fetch('https://backend-for-agriseva.onrender.com/api/nvidia', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
         body: JSON.stringify({
           messages: [{ role: "user", content: input }]
         })
       });
+      
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -290,60 +269,6 @@ const ChatbotPage = ({ currentLang }) => {
       </div>
     ))
   }
-
-  const createNewChat = () => {
-    const newChatId = `कृषी संवाद ${Object.keys(chatHistory).length + 1}`;
-
-    setChatHistory((prevChatHistory) => {
-      const updatedChatHistory = { ...prevChatHistory, [newChatId]: [] };
-      localStorage.setItem("agriChatHistory", JSON.stringify(updatedChatHistory));
-      return updatedChatHistory;
-    });
-
-    setChatNames((prevChatNames) => {
-      const updatedChatNames = { ...prevChatNames, [newChatId]: newChatId };
-      localStorage.setItem("agriChatNames", JSON.stringify(updatedChatNames));
-      return updatedChatNames;
-    });
-
-    setCurrentChatId(newChatId);
-    setMessages([]);
-    localStorage.setItem("agriCurrentChatId", newChatId);
-  };
-
-  const loadChat = (chatId) => {
-    setCurrentChatId(chatId);
-    setMessages(chatHistory[chatId] || []);
-  };
-
-  const startRenameChat = (chatId) => {
-    setRenameChatId(chatId);
-    setRenameChatName(chatNames[chatId] || chatId);
-  };
-
-  const confirmRenameChat = (chatId) => {
-    if (!renameChatName.trim()) return;
-
-    const updatedChatNames = { ...chatNames, [chatId]: renameChatName };
-    setChatNames(updatedChatNames);
-    setRenameChatId(null); // Exit rename mode
-
-    localStorage.setItem("agriChatNames", JSON.stringify(updatedChatNames));
-  };
-
-  const deleteChat = (chatId) => {
-    const updatedChats = { ...chatHistory };
-    delete updatedChats[chatId];
-    const updatedNames = { ...chatNames };
-    delete updatedNames[chatId];
-    setChatHistory(updatedChats);
-    setChatNames(updatedNames);
-    if (currentChatId === chatId) {
-      const remainingChats = Object.keys(updatedChats);
-      setCurrentChatId(remainingChats.length ? remainingChats[0] : "");
-      setMessages(remainingChats.length ? updatedChats[remainingChats[0]] : []);
-    }
-  };
 
   return (
     <>

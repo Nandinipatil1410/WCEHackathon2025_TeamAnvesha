@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import "./WeatherForecast.css";
 import Navbar from './shared/Navbar';
 

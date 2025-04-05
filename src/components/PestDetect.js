@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import * as tmImage from "@teachablemachine/image";
 import "./PestDetect.css";
 import newImage from './new.png'
-import { Link } from "react-router-dom";
 import Navbar from './shared/Navbar';
 
 const URL = "/my_model/";

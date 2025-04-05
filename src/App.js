@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link ,Navigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import './App.css';
 import chatbotImg from "./assets/plant-logo.png";
 import weatherImg from "./assets/weather-logo.png";
@@ -15,15 +15,6 @@ import CropPredictor from './components/CropPredictor';
 
 import MainNavbar from './components/MainNavbar';
 
-
-
-const languages = [
-  { code: 'en', name: 'English' },
-  { code: 'hi', name: 'हिंदी' },
-  { code: 'mr', name: 'मराठी' },
-  { code: 'te', name: 'తెలుగు' },
-  { code: 'pa', name: 'ਪੰਜਾਬੀ' }
-];
 
 function HomePage({ currentLang, setCurrentLang }) {
   const translations = {

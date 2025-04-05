@@ -18,6 +18,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "lucide-react": "^0.479.0",
+    "multer": "^1.4.5-lts.2",
     "openai": "^4.28.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -29,7 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "vercel-build": "npm install --legacy-peer-deps && next build"
   },
   "eslintConfig": {
     "extends": [
